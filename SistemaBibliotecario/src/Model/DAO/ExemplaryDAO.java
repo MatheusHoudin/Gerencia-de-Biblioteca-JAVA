@@ -26,14 +26,14 @@ public class ExemplaryDAO {
         return new ExemplaryDAO();
     }
     
-    public boolean insert(Exemplary exemplary,int idBook){
+    public boolean insert(Exemplary exemplary){
         String sql = "INSERT INTO exemplary(avaliable,book) VALUES(?,?)";
         PreparedStatement stmt = null;
         
          try {
              stmt = con.prepareStatement(sql);
              stmt.setInt(1, exemplary.isAvaliable() ? 1 : 0);
-             stmt.setInt(2, idBook);
+             stmt.setInt(2, exemplary.getId());
              
              stmt.executeUpdate();
              return true;
@@ -44,4 +44,9 @@ public class ExemplaryDAO {
              ConnectionFactory.closeConnection(con, stmt);
          }
     }
+
+    public void setConnection(Connection con) {
+        this.con = con;
+    }
+    
 }

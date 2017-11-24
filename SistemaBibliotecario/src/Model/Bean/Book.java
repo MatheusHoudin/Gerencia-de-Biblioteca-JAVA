@@ -76,6 +76,11 @@ public class Book {
     public void setEdition(int edition) {
         this.edition = edition;
     }
+
+    @Override
+    public String toString() {
+        return "Título: "+this.getTitle()+" - Edição: "+this.getEdition(); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }

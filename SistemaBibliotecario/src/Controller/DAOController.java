@@ -7,9 +7,11 @@ package Controller;
 
 import Connection.DAOFactory;
 import Model.Bean.Book;
+import Model.Bean.Exemplary;
 import Model.DAO.BookDAO;
+import Model.DAO.ExemplaryDAO;
+import View.ViewRegister.ViewRegisterExemplary;
 import javax.swing.JComboBox;
-import javax.swing.JSpinner;
 
 /**
  *
@@ -20,13 +22,27 @@ public class DAOController {
     public static void fillJComboBoxBooks(JComboBox jCombo){
         BookDAO bookDao = DAOFactory.getInstanceBookDAO();
         for(Book b:bookDao.findAll()){
-            jCombo.addItem(b.getTitle());
+            jCombo.addItem(b);
         }
     }
     
-    public static void insertExemplarys(JSpinner jsnNumberExemplarys,JComboBox jcb){
-        int numberExemplarys = (int)jsnNumberExemplarys.getValue();
-        String nameBook = (String)jcb.getSelectedItem();
+    public static void insertExemplarys(ViewRegisterExemplary viewRegisterExemplary){
+        
+        int numberExemplarys = (int)viewRegisterExemplary.getjSpinnerNumberExemplarys().getValue();
+        Book book = (Book)viewRegisterExemplary.getjComboBoxBooks().getSelectedItem();
+        
+        ExemplaryDAO exemplaryDAO = DAOFactory.getInstanceExemplaryDAO();
+        
+        Exemplary exemplary = new Exemplary(book.getTitle(), book.getAuthor(), book.getTheme(),
+                                            book.getPublishingCompany(), book.getEdition(), book.getId());
+
+        for (; numberExemplarys != 0; numberExemplarys--) {
+            System.out.println(exemplary.getId());
+            exemplaryDAO.insert(exemplary);
+            exemplaryDAO = DAOFactory.getInstanceExemplaryDAO();
+
+            System.out.println("inserido");
+        }
         
     }
 }

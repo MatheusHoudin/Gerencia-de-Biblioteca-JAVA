@@ -12,10 +12,13 @@ package Model.Bean;
 public class Exemplary extends Book{
     private boolean avaliable;
     private int idExemplary;
-
-    public Exemplary(String title, String author, String theme, String publishingCompany, int edition) {
+    
+    public Exemplary(String title, String author, String theme, String publishingCompany, int edition,int idBook) {
         super(title, author, theme, publishingCompany, edition);
+        this.setId(idBook);
+        this.setAvaliable(true);
     }
+
 
     public boolean isAvaliable() {
         return avaliable;

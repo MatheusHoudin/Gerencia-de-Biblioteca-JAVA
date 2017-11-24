@@ -111,14 +111,14 @@ public class BookDAO {
     }
     
     public Book find(String title,int edition){
-        String sql = "SELECT * FROM book as b WHERE b.title LIKE ? AND b.edition = ?";
-        
+        String sql = "SELECT * FROM book as b WHERE b.title = ? AND b.edition = ?";
+        System.out.println("");
         PreparedStatement stmt = null;
         ResultSet rs = null;
         Book book = null;
         try {
             stmt = con.prepareStatement(sql);
-            stmt.setString(1, "%"+title+"%");
+            stmt.setString(1, title);
             stmt.setInt(2, edition);
             rs = stmt.executeQuery();
             
