@@ -63,6 +63,7 @@ public class BookDAO {
             
             while(rs.next()){
                 Book book = new Book();
+                book.setId(rs.getInt("id"));
                 book.setTitle(rs.getString("title"));
                 book.setTheme(rs.getString("theme"));
                 book.setAuthor(rs.getString("author"));
@@ -80,7 +81,7 @@ public class BookDAO {
     }
     
     public List<Book> findAll(String title){
-        String sql = "SELECT * FROM book as b WHERE b.title LIKE ? ORDER BY b.title";
+        String sql = "SELECT * FROM book as b WHERE b.title LIKE ?";
         
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -93,6 +94,7 @@ public class BookDAO {
             
             while(rs.next()){
                 Book book = new Book();
+                book.setId(rs.getInt("id"));
                 book.setTitle(rs.getString("title"));
                 book.setTheme(rs.getString("theme"));
                 book.setAuthor(rs.getString("author"));
@@ -106,6 +108,34 @@ public class BookDAO {
             ConnectionFactory.closeConnection(con, stmt, rs);
         }
         return books;
+    }
+    
+    public Book find(String title,int edition){
+        String sql = "SELECT * FROM book as b WHERE b.title LIKE ? AND b.edition = ?";
+        
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Book book = null;
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, "%"+title+"%");
+            stmt.setInt(2, edition);
+            rs = stmt.executeQuery();
+            
+            book = new Book();
+            book.setId(rs.getInt("id"));
+            book.setTitle(rs.getString("title"));
+            book.setTheme(rs.getString("theme"));
+            book.setAuthor(rs.getString("author"));
+            book.setPublishingCompany(rs.getString("publishingCompany"));
+            book.setEdition(rs.getInt("edition"));  
+            
+        } catch (SQLException ex) {
+            System.err.println("Error on find books:"+ex);
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        return book;
     }
     
     public void setConnection(Connection con){

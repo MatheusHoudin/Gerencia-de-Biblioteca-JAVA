@@ -31,6 +31,26 @@ public class LibrarianDAO {
         return new LibrarianDAO();
     }
     
+    public boolean insert(Librarian librarian){
+        String sql = "INSERT INTO librarian(name,user,password) VALUES(?,?,?)";
+        PreparedStatement stmt = null;
+        
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, librarian.getName());
+            stmt.setString(2, librarian.getUser());
+            stmt.setString(3, librarian.getPassword());
+            
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.err.println("Error on insert librarian:"+ex);
+            return false;
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+        
+    }
     public List<Librarian> findAll(){
         String sql = "SELECT * FROM librarian";
         PreparedStatement stmt = null;
