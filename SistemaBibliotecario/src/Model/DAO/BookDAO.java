@@ -112,7 +112,6 @@ public class BookDAO {
     
     public Book find(String title,int edition){
         String sql = "SELECT * FROM book as b WHERE b.title = ? AND b.edition = ?";
-        System.out.println("");
         PreparedStatement stmt = null;
         ResultSet rs = null;
         Book book = null;

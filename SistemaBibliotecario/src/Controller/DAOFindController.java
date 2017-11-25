@@ -7,8 +7,12 @@ package Controller;
 
 import Connection.DAOFactory;
 import Model.Bean.Book;
+import Model.Bean.Exemplary;
 import Model.DAO.BookDAO;
+import Model.DAO.ExemplaryDAO;
 import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,10 +20,73 @@ import javax.swing.JComboBox;
  */
 public class DAOFindController {
     
-        public static void fillJComboBoxBooks(JComboBox jCombo){
+    public static void fillJComboBoxBooks(JComboBox jCombo){
         BookDAO bookDao = DAOFactory.getInstanceBookDAO();
         for(Book b:bookDao.findAll()){
             jCombo.addItem(b);
+        }
+    }
+    
+    public static void fillJTableBooks(JTable jTableBooks){
+        DefaultTableModel dtm = (DefaultTableModel) jTableBooks.getModel();
+        dtm.setNumRows(0);
+        BookDAO bDao = DAOFactory.getInstanceBookDAO();
+        
+        for(Book book:bDao.findAll()){
+            dtm.addRow(new Object[]{
+                book.getTitle(),
+                book.getTheme(),
+                book.getAuthor(),
+                book.getEdition(),
+                book.getPublishingCompany()
+            });
+           
+        }
+    }
+    
+    public static void fillJTableBooks(JTable jTableBooks,String filter){
+        DefaultTableModel dtm = (DefaultTableModel) jTableBooks.getModel();
+        dtm.setNumRows(0);
+        BookDAO bDao = DAOFactory.getInstanceBookDAO();
+        
+        for(Book book:bDao.findAll(filter)){
+            dtm.addRow(new Object[]{
+                book.getTitle(),
+                book.getTheme(),
+                book.getAuthor(),
+                book.getEdition(),
+                book.getPublishingCompany()
+            });
+        }
+    }
+    
+    public static void fillJTableExemplarys(JTable jTableExemplarys,Book book){
+        DefaultTableModel dtm = (DefaultTableModel) jTableExemplarys.getModel();
+        dtm.setNumRows(0);
+        ExemplaryDAO exemplaryDAO = DAOFactory.getInstanceExemplaryDAO();
+        
+        for(Exemplary exemplary:exemplaryDAO.find(book.getId())){
+            dtm.addRow(new Object[]{
+                exemplary.getIdExemplary(),
+                exemplary.getTitle(),
+                exemplary.isAvaliable() ? "Disponível":"Indisponível",
+                exemplary.getId()
+            });
+        }
+    }
+    
+        public static void fillJTableExemplarys(JTable jTableExemplarys){
+        DefaultTableModel dtm = (DefaultTableModel) jTableExemplarys.getModel();
+        dtm.setNumRows(0);
+        ExemplaryDAO exemplaryDAO = DAOFactory.getInstanceExemplaryDAO();
+        
+        for(Exemplary exemplary:exemplaryDAO.findAll()){
+            dtm.addRow(new Object[]{
+                exemplary.getIdExemplary(),
+                exemplary.getTitle(),
+                exemplary.isAvaliable() ? "Disponível":"Indisponível",
+                exemplary.getId()
+            });
         }
     }
 }

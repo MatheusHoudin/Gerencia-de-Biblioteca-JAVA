@@ -13,6 +13,10 @@ public class Exemplary extends Book{
     private boolean avaliable;
     private int idExemplary;
     
+    
+    public Exemplary(){
+        super();
+    }
     public Exemplary(String title, String author, String theme, String publishingCompany, int edition,int idBook) {
         super(title, author, theme, publishingCompany, edition);
         this.setId(idBook);

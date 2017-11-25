@@ -13,6 +13,7 @@ import View.ViewRegister.ViewRegisterExemplary;
 import View.ViewRegister.ViewRegisterBook;
 import View.ViewRegister.ViewRegisterLibrarian;
 import View.ViewRegister.ViewRegisterUser;
+import View.ViewShow.ViewShowExemplarys;
 
 /**
  *
@@ -172,6 +173,11 @@ public class ViewMain extends javax.swing.JFrame {
 
         jMenuItemListarExemplares.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_open.png"))); // NOI18N
         jMenuItemListarExemplares.setText("Listar Exemplares");
+        jMenuItemListarExemplares.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemListarExemplaresActionPerformed(evt);
+            }
+        });
         jMenuExemplares.add(jMenuItemListarExemplares);
 
         jMenuBar1.add(jMenuExemplares);
@@ -309,6 +315,10 @@ public class ViewMain extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         ChangeViewController.changeView(jDesktopPane1, new ViewRegisterLibrarian());
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItemListarExemplaresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemListarExemplaresActionPerformed
+        ChangeViewController.changeView(jDesktopPane1, new ViewShowExemplarys());
+    }//GEN-LAST:event_jMenuItemListarExemplaresActionPerformed
 
     /**
      * @param args the command line arguments

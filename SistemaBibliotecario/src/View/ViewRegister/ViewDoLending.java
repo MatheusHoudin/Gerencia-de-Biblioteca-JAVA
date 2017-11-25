@@ -6,12 +6,14 @@
 package View.ViewRegister;
 
 import Configuration.MsgBoxDialog;
-import Connection.DAOFactory;
+import Controller.ChangeViewController;
 import Controller.DAOFindController;
-import Controller.DAOInsertController;
 import Model.Bean.Book;
-import Model.DAO.BookDAO;
-import javax.swing.JDesktopPane;
+import java.awt.Color;
+import java.awt.Component;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -23,10 +25,11 @@ public class ViewDoLending extends javax.swing.JInternalFrame {
      * Creates new form TelaRealizarEmprestimo
      * @param j
      */
-    public ViewDoLending(JDesktopPane j) {
+    public ViewDoLending() {
         initComponents();
-        j.add(this);
         DAOFindController.fillJComboBoxBooks(jComboBoxListaLivros);
+        DAOFindController.fillJTableExemplarys(jTableExemplares, (Book)this.jComboBoxListaLivros.getSelectedItem());
+        ChangeViewController.addColorOnRows(jTableExemplares);
     }
 
     /**
@@ -67,6 +70,11 @@ public class ViewDoLending extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel1.setText("Livro");
 
+        jComboBoxListaLivros.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxListaLivrosItemStateChanged(evt);
+            }
+        });
         jComboBoxListaLivros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxListaLivrosActionPerformed(evt);
@@ -75,33 +83,14 @@ public class ViewDoLending extends javax.swing.JInternalFrame {
 
         jTableExemplares.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "Id", "Título", "Disponibilidade"
+                "Id", "Título", "Disponibilidade", "Id Livro"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -165,9 +154,14 @@ public class ViewDoLending extends javax.swing.JInternalFrame {
      
     }//GEN-LAST:event_btnRealizarEmprestimoActionPerformed
 
+    private void jComboBoxListaLivrosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxListaLivrosItemStateChanged
+        DAOFindController.fillJTableExemplarys(jTableExemplares, (Book)this.jComboBoxListaLivros.getSelectedItem());
+        ChangeViewController.addColorOnRows(jTableExemplares);
+    }//GEN-LAST:event_jComboBoxListaLivrosItemStateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRealizarEmprestimo;
-    private javax.swing.JComboBox<String> jComboBoxListaLivros;
+    private javax.swing.JComboBox<Object> jComboBoxListaLivros;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableExemplares;

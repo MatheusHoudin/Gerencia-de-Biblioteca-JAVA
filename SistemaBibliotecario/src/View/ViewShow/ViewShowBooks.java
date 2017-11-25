@@ -5,11 +5,8 @@
  */
 package View.ViewShow;
 
-import Connection.DAOFactory;
-import Model.Bean.Book;
-import Model.DAO.BookDAO;
+import Controller.DAOFindController;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,42 +19,7 @@ public class ViewShowBooks extends javax.swing.JInternalFrame {
      */
     public ViewShowBooks() {
         initComponents();
-        this.fillJTableBooks();
-    }
-    
-    private void fillJTableBooks(){
-        DefaultTableModel dtm = (DefaultTableModel) jTableBooks.getModel();
-        dtm.setNumRows(0);
-        BookDAO bDao = DAOFactory.getInstanceBookDAO();
-        
-        for(Book book:bDao.findAll()){
-            dtm.addRow(new Object[]{
-                book.getTitle(),
-                book.getTheme(),
-                book.getAuthor(),
-                book.getEdition(),
-                book.getPublishingCompany()
-            });
-           
-        }
-    }
-    
-    private void fillJTableBooks(String filter){
-        DefaultTableModel dtm = (DefaultTableModel) jTableBooks.getModel();
-        dtm.setNumRows(0);
-        BookDAO bDao = DAOFactory.getInstanceBookDAO();
-        
-        for(Book book:bDao.findAll(filter)){
-            dtm.addRow(new Object[]{
-                book.getTitle(),
-                book.getTheme(),
-                book.getAuthor(),
-                book.getEdition(),
-                book.getPublishingCompany()
-            });
-            System.out.println(book.getTitle());
-           
-        }
+        DAOFindController.fillJTableBooks(jTableBooks);
     }
 
     /**
@@ -184,7 +146,7 @@ public class ViewShowBooks extends javax.swing.JInternalFrame {
         if(this.txtTitleFilter.getText().equals("")){
             JOptionPane.showMessageDialog(rootPane, "Insira dados no filtro");
         }else{
-            this.fillJTableBooks(this.txtTitleFilter.getText());
+            DAOFindController.fillJTableBooks(jTableBooks, this.txtTitleFilter.getText());
         }
     }//GEN-LAST:event_btnFiltrateActionPerformed
 
@@ -193,7 +155,7 @@ public class ViewShowBooks extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtTitleFilterActionPerformed
 
     private void btnRemoveFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveFilterActionPerformed
-        this.fillJTableBooks();
+        DAOFindController.fillJTableBooks(jTableBooks);
         this.txtTitleFilter.setText("");
     }//GEN-LAST:event_btnRemoveFilterActionPerformed
 

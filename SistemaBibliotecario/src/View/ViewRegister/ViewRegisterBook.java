@@ -6,10 +6,7 @@
 package View.ViewRegister;
 
 import Configuration.MsgBoxDialog;
-import Connection.DAOFactory;
 import Controller.DAOInsertController;
-import Model.Bean.Book;
-import Model.DAO.BookDAO;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;

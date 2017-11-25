@@ -37,7 +37,6 @@ public class DAOInsertController {
                                             book.getPublishingCompany(), book.getEdition(), book.getId());
         
         for (; numberExemplarys != 0;) {
-            System.out.println(exemplary.getId());
             if(exemplaryDAO.insert(exemplary)){
                 numberExemplarys--;
             }

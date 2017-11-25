@@ -5,9 +5,14 @@
  */
 package Controller;
 
+import java.awt.Color;
+import java.awt.Component;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -22,5 +27,23 @@ public class ChangeViewController {
     public static void changeView(JDesktopPane jDesktopPane,JInternalFrame jInternalFrameToOpen){
         jDesktopPane.add(jInternalFrameToOpen);
         jInternalFrameToOpen.setVisible(true);
+    }
+    
+    public static void addColorOnRows(JTable jTableExemplarys){
+        jTableExemplarys.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                JLabel jlabel =(JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column); 
+                
+                String obj = (String)table.getValueAt(row, 2);
+                if(obj!=null && obj.equals("Disponível")){
+                    jlabel.setForeground(Color.blue);
+                }else{
+                    jlabel.setForeground(Color.red);
+                }
+                return jlabel;
+            }
+            
+        });
     }
 }
