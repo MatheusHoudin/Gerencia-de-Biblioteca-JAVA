@@ -6,7 +6,10 @@
 package View.ViewValidate;
 
 import Configuration.MsgBoxDialog;
+import Controller.ChangeViewController;
+import Controller.LoginController;
 import View.ViewRegister.ViewDoLending;
+import View.ViewRegister.ViewRegisterLibrarian;
 import javax.swing.JOptionPane;
 
 /**
@@ -140,13 +143,17 @@ public class ViewValidateUser extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formInternalFrameClosing
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(this.txtEmailUsuario.getText().equals("u")&&this.txtSenhaUsuario.getText().equals("123")){
-            ViewDoLending tela = new ViewDoLending(this.getDesktopPane());
-            this.dispose();
-            tela.setVisible(true);
-        }else{
-            JOptionPane.showMessageDialog(rootPane, "Dados inválidos!");
-        }
+       if(this.txtEmailUsuario.getText().equals("") || this.txtSenhaUsuario.getPassword().length == 0){
+          JOptionPane.showMessageDialog(rootPane, "Preencha todos os Campos");
+       }else{
+           if(LoginController.validateUser(this.txtEmailUsuario.getText(),this.txtSenhaUsuario.getText())){
+               ChangeViewController.changeView(this.getDesktopPane(),new ViewRegisterLibrarian());
+           }else{
+               JOptionPane.showMessageDialog(rootPane,"Dados invalidos");
+           }
+       }
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

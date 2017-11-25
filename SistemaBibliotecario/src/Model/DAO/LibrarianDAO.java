@@ -79,6 +79,33 @@ public class LibrarianDAO {
         return librarians;
     }
     
+    public Librarian find(String user,String password){
+        String sql = "SELECT * FROM librarian where user = ? AND password = ?";
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, user);
+            stmt.setString(2, password);
+            rs = stmt.executeQuery();
+            if(rs.next()){
+                Librarian lib = new Librarian();
+                lib.setId(rs.getInt("id"));
+                lib.setName(rs.getString("name"));
+                lib.setUser(rs.getString("user"));
+                lib.setPassword(rs.getString("password"));
+                
+                return lib;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(LibrarianDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        return null;
+    }
+    
     public void setConnection(Connection con){
         this.con = con;
     }

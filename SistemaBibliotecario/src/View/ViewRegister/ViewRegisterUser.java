@@ -166,10 +166,19 @@ public class ViewRegisterUser extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtPasswordUserActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        if(DAOInsertController.insertUser(this)){
-            JOptionPane.showMessageDialog(rootPane, "Usuário cadastrado!");
-        }else{
-            JOptionPane.showMessageDialog(rootPane, "Este nome de usuário já existe!");
+        if (this.txtNameUser.getText().equals("") || this.txtUser.getText().equals("")
+                || this.txtPasswordUser.getPassword().length == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha todos os dados");
+        } else {
+            if (this.txtPasswordUser.getPassword().length >= 8 && this.txtPasswordUser.getPassword().length <= 16) {
+                if (DAOInsertController.insertUser(this)) {
+                    JOptionPane.showMessageDialog(rootPane, "Usuário cadastrado!");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Este nome de usuário já existe!");
+                }
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Digite uma senha com 8 à 16 caracteres!");
+            }
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 

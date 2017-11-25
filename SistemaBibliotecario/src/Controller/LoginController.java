@@ -7,7 +7,9 @@ package Controller;
 
 import Connection.DAOFactory;
 import Model.Bean.Librarian;
+import Model.Bean.User;
 import Model.DAO.LibrarianDAO;
+import Model.DAO.UserDAO;
 import java.util.List;
 
 /**
@@ -15,19 +17,20 @@ import java.util.List;
  * @author XXXXXX
  */
 public class LoginController {
-    private static Librarian loggedLibrarian;
+    public static Librarian loggedLibrarian;
+    public static User user;
     
     public static boolean doLogin(String user,String password){
-        Librarian librarianAux = new Librarian(user,password);
         LibrarianDAO librarianDAO = DAOFactory.getInstanceLibrarianDAO();
-        List<Librarian> librarians = librarianDAO.findAll();
+        LoginController.loggedLibrarian = librarianDAO.find(user, password);
         
-        for(Librarian librarian:librarians){
-            if(librarian.equals(librarianAux)){
-                loggedLibrarian = librarian;
-                return true;
-            }
-        }
-        return false;
+        return LoginController.loggedLibrarian!=null;
+    }
+    
+    public static boolean validateUser(String user,String password){
+        UserDAO usd = DAOFactory.getInstanceUserDAO();
+        LoginController.user = usd.find(user, password);
+        
+        return LoginController.user != null;
     }
 }
