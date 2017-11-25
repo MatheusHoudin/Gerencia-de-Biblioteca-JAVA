@@ -2,13 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/XXXXXX/Documents/GitHub/Gerencia-de-Biblioteca-JAVA/SistemaBibliotecario/src/Controller/DAOController.java</file>
-            <file>file:/C:/Users/XXXXXX/Documents/GitHub/Gerencia-de-Biblioteca-JAVA/SistemaBibliotecario/src/Model/DAO/ExemplaryDAO.java</file>
-            <file>file:/C:/Users/XXXXXX/Documents/GitHub/Gerencia-de-Biblioteca-JAVA/SistemaBibliotecario/src/Model/Bean/Exemplary.java</file>
-            <file>file:/C:/Users/XXXXXX/Documents/GitHub/Gerencia-de-Biblioteca-JAVA/SistemaBibliotecario/src/Model/DAO/BookDAO.java</file>
-            <file>file:/C:/Users/XXXXXX/Documents/GitHub/Gerencia-de-Biblioteca-JAVA/SistemaBibliotecario/src/View/ViewShow/ViewShowBooks.java</file>
-            <file>file:/C:/Users/XXXXXX/Documents/GitHub/Gerencia-de-Biblioteca-JAVA/SistemaBibliotecario/src/View/ViewRegister/ViewRegisterExemplary.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

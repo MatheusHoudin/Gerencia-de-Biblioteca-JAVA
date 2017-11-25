@@ -6,8 +6,10 @@
 package View.ViewRegister;
 
 import Configuration.MsgBoxDialog;
-import javax.swing.JFrame;
+import Controller.DAOInsertController;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
  *
@@ -32,11 +34,11 @@ public class ViewRegisterUser extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        txtNomeUsuario = new javax.swing.JTextField();
+        txtNameUser = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtEmailUsuario = new javax.swing.JTextField();
+        txtUser = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtSenhaUsuario = new javax.swing.JPasswordField();
+        txtPasswordUser = new javax.swing.JPasswordField();
         btnCadastrar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
@@ -63,27 +65,27 @@ public class ViewRegisterUser extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel1.setText("Nome");
 
-        txtNomeUsuario.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txtNomeUsuario.setToolTipText("Nome do Usuario");
-        txtNomeUsuario.addActionListener(new java.awt.event.ActionListener() {
+        txtNameUser.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtNameUser.setToolTipText("Nome do Usuario");
+        txtNameUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeUsuarioActionPerformed(evt);
+                txtNameUserActionPerformed(evt);
             }
         });
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel2.setText("Email");
+        jLabel2.setText("Usuário");
 
-        txtEmailUsuario.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txtEmailUsuario.setToolTipText("Email do usuario");
+        txtUser.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtUser.setToolTipText("Email do usuario");
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel3.setText("Senha");
 
-        txtSenhaUsuario.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txtSenhaUsuario.addActionListener(new java.awt.event.ActionListener() {
+        txtPasswordUser.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtPasswordUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSenhaUsuarioActionPerformed(evt);
+                txtPasswordUserActionPerformed(evt);
             }
         });
 
@@ -106,23 +108,28 @@ public class ViewRegisterUser extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(8, 8, 8))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                         .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(56, 56, 56))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtSenhaUsuario)
-                            .addComponent(txtEmailUsuario)
-                            .addComponent(txtNomeUsuario))
+                            .addComponent(txtPasswordUser)
+                            .addComponent(txtUser)
+                            .addComponent(txtNameUser))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -131,35 +138,39 @@ public class ViewRegisterUser extends javax.swing.JInternalFrame {
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNameUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtEmailUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtSenhaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPasswordUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNomeUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeUsuarioActionPerformed
+    private void txtNameUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameUserActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeUsuarioActionPerformed
+    }//GEN-LAST:event_txtNameUserActionPerformed
 
-    private void txtSenhaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaUsuarioActionPerformed
+    private void txtPasswordUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordUserActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtSenhaUsuarioActionPerformed
+    }//GEN-LAST:event_txtPasswordUserActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        // TODO add your handling code here:
+        if(DAOInsertController.insertUser(this)){
+            JOptionPane.showMessageDialog(rootPane, "Usuário cadastrado!");
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Este nome de usuário já existe!");
+        }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
@@ -177,8 +188,19 @@ public class ViewRegisterUser extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField txtEmailUsuario;
-    private javax.swing.JTextField txtNomeUsuario;
-    private javax.swing.JPasswordField txtSenhaUsuario;
+    private javax.swing.JTextField txtNameUser;
+    private javax.swing.JPasswordField txtPasswordUser;
+    private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
+    public JTextField getTxtNameUser(){
+        return this.txtNameUser;
+    }
+    
+    public JPasswordField getTxtPasswordUser(){
+        return this.txtPasswordUser;
+    }
+    
+    public JTextField getTxtUserUser(){
+        return this.txtUser;
+    }
 }

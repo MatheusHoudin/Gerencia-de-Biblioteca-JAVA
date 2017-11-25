@@ -7,9 +7,12 @@ package View.ViewRegister;
 
 import Configuration.MsgBoxDialog;
 import Connection.DAOFactory;
+import Controller.DAOInsertController;
 import Model.Bean.Book;
 import Model.DAO.BookDAO;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
 
 /**
  *
@@ -34,15 +37,15 @@ public class ViewRegisterBook extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        txtTitulo = new javax.swing.JTextField();
+        txtTitle = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtAutor = new javax.swing.JTextField();
+        txtAuthor = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jSpinnerEdicao = new javax.swing.JSpinner();
+        jSpinnerEdition = new javax.swing.JSpinner();
         jLabel4 = new javax.swing.JLabel();
-        txtTema = new javax.swing.JTextField();
+        txtTheme = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtEditora = new javax.swing.JTextField();
+        txtPublishingCompany = new javax.swing.JTextField();
         btnCadastrarLivro = new javax.swing.JButton();
         btnCancelarCadastroLivro = new javax.swing.JButton();
 
@@ -75,7 +78,7 @@ public class ViewRegisterBook extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel3.setText("Edição");
 
-        jSpinnerEdicao.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        jSpinnerEdition.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel4.setText("Tema");
@@ -111,22 +114,22 @@ public class ViewRegisterBook extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSpinnerEdicao, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jSpinnerEdition, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTema, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTheme, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtEditora, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtPublishingCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(16, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(103, 103, 103)
@@ -141,19 +144,19 @@ public class ViewRegisterBook extends javax.swing.JInternalFrame {
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(jSpinnerEdicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSpinnerEdition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtTema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTheme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(txtEditora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPublishingCompany, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadastrarLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -173,19 +176,11 @@ public class ViewRegisterBook extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formInternalFrameClosing
 
     private void btnCadastrarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarLivroActionPerformed
-        if(this.txtAutor.getText().equals("") || this.txtEditora.getText().equals("")||
-           this.txtTema.getText().equals("") || this.txtTitulo.getText().equals("")){
+        if(this.txtAuthor.getText().equals("") || this.txtPublishingCompany.getText().equals("")||
+           this.txtTheme.getText().equals("") || this.txtTitle.getText().equals("")){
             JOptionPane.showMessageDialog(rootPane, "Preencha todos os dados");
         }else{
-            String autor = this.txtAutor.getText();
-            String editora = this.txtEditora.getText();
-            String tema = this.txtTema.getText();
-            String titulo = this.txtTitulo.getText();
-            int edicao = (int)this.jSpinnerEdicao.getValue();
-            
-            Book livro = new Book(titulo,autor,tema,editora,edicao);
-            BookDAO lDao = DAOFactory.getInstanceBookDAO();
-            if(lDao.insert(livro)){
+            if(DAOInsertController.insertBook(this)){
                 JOptionPane.showMessageDialog(rootPane, "Livro inserido com sucesso");
             }else{
                 JOptionPane.showMessageDialog(rootPane, "Erro ao inserir livro");
@@ -202,10 +197,32 @@ public class ViewRegisterBook extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JSpinner jSpinnerEdicao;
-    private javax.swing.JTextField txtAutor;
-    private javax.swing.JTextField txtEditora;
-    private javax.swing.JTextField txtTema;
-    private javax.swing.JTextField txtTitulo;
+    private javax.swing.JSpinner jSpinnerEdition;
+    private javax.swing.JTextField txtAuthor;
+    private javax.swing.JTextField txtPublishingCompany;
+    private javax.swing.JTextField txtTheme;
+    private javax.swing.JTextField txtTitle;
     // End of variables declaration//GEN-END:variables
+
+    public JSpinner getjSpinnerEdition() {
+        return jSpinnerEdition;
+    }
+
+    public JTextField getTxtAuthor() {
+        return txtAuthor;
+    }
+
+    public JTextField getTxtPublishingCompany() {
+        return txtPublishingCompany;
+    }
+
+    public JTextField getTxtTheme() {
+        return txtTheme;
+    }
+
+    public JTextField getTxtTitle() {
+        return txtTitle;
+    }
+
+    
 }

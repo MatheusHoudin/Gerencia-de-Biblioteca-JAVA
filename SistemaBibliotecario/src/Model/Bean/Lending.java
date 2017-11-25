@@ -18,17 +18,15 @@ public class Lending {
     private User user;
     private Librarian lendingLibrarian;
     private Librarian devolutionLibrarian;
-    private float price;
     private float penality;
     private Date lendingDate;
     private Date devolutionDate;
 
-    public Lending(Exemplary exemplary, User user, Librarian lendingLibrarian, Librarian devolutionLibrarian, float price, float penality, Date lendingDate, Date devolutionDate) {
+    public Lending(Exemplary exemplary, User user, Librarian lendingLibrarian, Librarian devolutionLibrarian, float penality, Date lendingDate, Date devolutionDate) {
         this.exemplary = exemplary;
         this.user = user;
         this.lendingLibrarian = lendingLibrarian;
         this.devolutionLibrarian = devolutionLibrarian;
-        this.price = price;
         this.penality = penality;
         this.lendingDate = lendingDate;
         this.devolutionDate = devolutionDate;
@@ -72,14 +70,6 @@ public class Lending {
 
     public void setDevolutionLibrarian(Librarian devolutionLibrarian) {
         this.devolutionLibrarian = devolutionLibrarian;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
     }
 
     public float getPenality() {

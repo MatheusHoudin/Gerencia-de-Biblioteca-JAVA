@@ -7,7 +7,8 @@ package View.ViewRegister;
 
 import Configuration.MsgBoxDialog;
 import Connection.DAOFactory;
-import Controller.DAOController;
+import Controller.DAOFindController;
+import Controller.DAOInsertController;
 import Model.Bean.Book;
 import Model.DAO.BookDAO;
 import javax.swing.JDesktopPane;
@@ -25,7 +26,7 @@ public class ViewDoLending extends javax.swing.JInternalFrame {
     public ViewDoLending(JDesktopPane j) {
         initComponents();
         j.add(this);
-        DAOController.fillJComboBoxBooks(jComboBoxListaLivros);
+        DAOFindController.fillJComboBoxBooks(jComboBoxListaLivros);
     }
 
     /**

@@ -6,8 +6,10 @@
 package View.ViewRegister;
 
 import Configuration.MsgBoxDialog;
-import Controller.DAOController;
+import Controller.DAOFindController;
+import Controller.DAOInsertController;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 
 /**
@@ -21,7 +23,7 @@ public class ViewRegisterExemplary extends javax.swing.JInternalFrame {
      */
     public ViewRegisterExemplary() {
         initComponents();
-        DAOController.fillJComboBoxBooks(jComboBoxBooks);
+        DAOFindController.fillJComboBoxBooks(jComboBoxBooks);
     }
 
     /**
@@ -150,7 +152,12 @@ public class ViewRegisterExemplary extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
     private void jButtonInsertExemplaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertExemplaryActionPerformed
-        DAOController.insertExemplarys(this);
+
+        if(DAOInsertController.insertExemplarys(this)){
+            JOptionPane.showMessageDialog(rootPane, "Cadastro efetuado");
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Algum exemplar não foi inserido");
+        }
     }//GEN-LAST:event_jButtonInsertExemplaryActionPerformed
 
    

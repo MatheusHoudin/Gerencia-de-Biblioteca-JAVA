@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View.ViewSystem;
+package View.ViewValidate;
 
 import Controller.ChangeViewController;
 import Controller.LoginController;
+import View.ViewSystem.ViewMain;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 

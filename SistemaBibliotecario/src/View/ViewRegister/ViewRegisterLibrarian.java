@@ -6,10 +6,10 @@
 package View.ViewRegister;
 
 import Configuration.MsgBoxDialog;
-import Connection.DAOFactory;
-import Model.Bean.Librarian;
-import Model.DAO.LibrarianDAO;
+import Controller.DAOInsertController;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
  *
@@ -149,15 +149,10 @@ public class ViewRegisterLibrarian extends javax.swing.JInternalFrame {
            this.txtUser.getText().equals("")){
             JOptionPane.showMessageDialog(rootPane, "Preencha todos os dados");
         }else{
-            String name = this.txtName.getText();
-            String user = this.txtUser.getText();
-            String pass = this.txtPassword.getText();
-            Librarian lib = new Librarian(user,pass,name);
-            LibrarianDAO libDAO = DAOFactory.getInstanceLibrarianDAO();
-            if(libDAO.insert(lib)){
-                JOptionPane.showMessageDialog(rootPane, "Bibliotecário Cadastrado com sucesso");
+            if(DAOInsertController.insertLibrarian(this)){
+                JOptionPane.showMessageDialog(rootPane, "Bibliotecário cadastrado");
             }else{
-                JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar Bibliotecário");
+                JOptionPane.showMessageDialog(rootPane, "Este nome de usuário já existe!");
             }
         }
     }//GEN-LAST:event_btnInsertActionPerformed
@@ -173,4 +168,18 @@ public class ViewRegisterLibrarian extends javax.swing.JInternalFrame {
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
+
+    public JTextField getTxtName() {
+        return txtName;
+    }
+
+    public JPasswordField getTxtPassword() {
+        return txtPassword;
+    }
+
+    public JTextField getTxtUser() {
+        return txtUser;
+    }
+    
+
 }

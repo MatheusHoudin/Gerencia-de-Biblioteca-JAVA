@@ -8,6 +8,7 @@ package Connection;
 import Model.DAO.BookDAO;
 import Model.DAO.ExemplaryDAO;
 import Model.DAO.LibrarianDAO;
+import Model.DAO.UserDAO;
 
 /**
  *
@@ -17,7 +18,16 @@ public class DAOFactory {
     private static BookDAO bookDAO;
     private static LibrarianDAO librarianDAO;
     private static ExemplaryDAO exemplaryDAO;
+    private static UserDAO userDAO;
     
+    
+    public static UserDAO getInstanceUserDAO(){
+        if(DAOFactory.userDAO==null){
+            DAOFactory.userDAO = UserDAO.getInstance();
+        }
+        DAOFactory.userDAO.setConnection(ConnectionFactory.getConnection());
+        return DAOFactory.userDAO;
+    }
     public static BookDAO getInstanceBookDAO(){
         if(DAOFactory.bookDAO==null){
            DAOFactory.bookDAO = BookDAO.getInstance();
