@@ -7,6 +7,7 @@ package Model.DAO;
 
 import Connection.ConnectionFactory;
 import Model.Bean.Book;
+import Model.Bean.Exemplary;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -135,6 +136,24 @@ public class BookDAO {
             ConnectionFactory.closeConnection(con, stmt, rs);
         }
         return book;
+    }
+    
+     public boolean delete(int idBook){
+        String sql = "DELETE FROM book WHERE book.id = ?";
+        PreparedStatement stmt = null;
+        
+         try {
+             stmt = con.prepareStatement(sql);
+             stmt.setInt(1, idBook);
+             stmt.executeUpdate();
+             return true;
+         } catch (SQLException ex) {
+             System.err.println("Error on delete book:"+ex);
+             return false;
+         }finally{
+             ConnectionFactory.closeConnection(con, stmt);
+         }
+         
     }
     
     public void setConnection(Connection con){

@@ -7,6 +7,7 @@ package View.ViewSystem;
 
 import View.ViewValidate.ViewLogin;
 import Controller.ChangeViewController;
+import View.ViewDelete.ViewDeleteBook;
 import View.ViewDelete.ViewDeleteExemplary;
 import View.ViewValidate.ViewValidateUser;
 import View.ViewShow.ViewShowBooks;
@@ -40,30 +41,30 @@ public class ViewMain extends javax.swing.JFrame {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenuUsuarios = new javax.swing.JMenu();
-        jMenuItemAdicionarUsuario = new javax.swing.JMenuItem();
-        jMenuItemRemoverUsuario = new javax.swing.JMenuItem();
-        jMenuItemAlterarUsuario = new javax.swing.JMenuItem();
-        jMenuItemListarUsuarios = new javax.swing.JMenuItem();
-        jMenuLivros = new javax.swing.JMenu();
-        jMenuItemAdicionarLivro = new javax.swing.JMenuItem();
-        jMenuItemRemoverLivro = new javax.swing.JMenuItem();
-        jMenuItemAlterarLivro = new javax.swing.JMenuItem();
-        jMenuItemListarLivros = new javax.swing.JMenuItem();
-        jMenuExemplares = new javax.swing.JMenu();
-        jMenuItemAdicionarExemplar = new javax.swing.JMenuItem();
-        jMenuItemRemoverExemplar = new javax.swing.JMenuItem();
-        jMenuItemAlterarExemplar = new javax.swing.JMenuItem();
-        jMenuItemListarExemplares = new javax.swing.JMenuItem();
-        jMenuEmprestimos = new javax.swing.JMenu();
-        jMenuItemRealizarEmprestimo = new javax.swing.JMenuItem();
-        jMenuItemVisualizarEmprestimos = new javax.swing.JMenuItem();
-        jMenuItemRenovarEmprestimo = new javax.swing.JMenuItem();
-        jMenuDevolucao = new javax.swing.JMenu();
-        jMenuItemRealizarDevolucao = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuSair = new javax.swing.JMenu();
+        jMenuUsers = new javax.swing.JMenu();
+        jMenuItemRegisterUser = new javax.swing.JMenuItem();
+        jMenuItemDeleteUser = new javax.swing.JMenuItem();
+        jMenuItemAlterUser = new javax.swing.JMenuItem();
+        jMenuItemShowUsers = new javax.swing.JMenuItem();
+        jMenuBooks = new javax.swing.JMenu();
+        jMenuItemRegisterBook = new javax.swing.JMenuItem();
+        jMenuItemDeleteBook = new javax.swing.JMenuItem();
+        jMenuItemAlterBook = new javax.swing.JMenuItem();
+        jMenuItemShowBooks = new javax.swing.JMenuItem();
+        jMenuExemplarys = new javax.swing.JMenu();
+        jMenuItemRegisterExemplary = new javax.swing.JMenuItem();
+        jMenuItemDeleteExemplary = new javax.swing.JMenuItem();
+        jMenuItemAlterExemplary = new javax.swing.JMenuItem();
+        jMenuItemShowExemplarys = new javax.swing.JMenuItem();
+        jMenuLendings = new javax.swing.JMenu();
+        jMenuItemDoLending = new javax.swing.JMenuItem();
+        jMenuItemShowLendings = new javax.swing.JMenuItem();
+        jMenuItemRenovateLending = new javax.swing.JMenuItem();
+        jMenuDevolution = new javax.swing.JMenu();
+        jMenuItemDoDevolution = new javax.swing.JMenuItem();
+        jMenuLibrarian = new javax.swing.JMenu();
+        jMenuItemRegisterLibrarian = new javax.swing.JMenuItem();
+        jMenuExit = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de Gerenciamento de Biblioteca");
@@ -85,178 +86,183 @@ public class ViewMain extends javax.swing.JFrame {
             .addGap(0, 540, Short.MAX_VALUE)
         );
 
-        jMenuUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/group.png"))); // NOI18N
-        jMenuUsuarios.setText("Usuários");
+        jMenuUsers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/group.png"))); // NOI18N
+        jMenuUsers.setText("Usuários");
 
-        jMenuItemAdicionarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/user.png"))); // NOI18N
-        jMenuItemAdicionarUsuario.setText("Adicionar Usuário");
-        jMenuItemAdicionarUsuario.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemRegisterUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/user.png"))); // NOI18N
+        jMenuItemRegisterUser.setText("Adicionar Usuário");
+        jMenuItemRegisterUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemAdicionarUsuarioActionPerformed(evt);
+                jMenuItemRegisterUserActionPerformed(evt);
             }
         });
-        jMenuUsuarios.add(jMenuItemAdicionarUsuario);
+        jMenuUsers.add(jMenuItemRegisterUser);
 
-        jMenuItemRemoverUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/user_delete.png"))); // NOI18N
-        jMenuItemRemoverUsuario.setText("Remover Usuario");
-        jMenuUsuarios.add(jMenuItemRemoverUsuario);
+        jMenuItemDeleteUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/user_delete.png"))); // NOI18N
+        jMenuItemDeleteUser.setText("Remover Usuario");
+        jMenuUsers.add(jMenuItemDeleteUser);
 
-        jMenuItemAlterarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/user_edit.png"))); // NOI18N
-        jMenuItemAlterarUsuario.setText("Alterar Usuário");
-        jMenuUsuarios.add(jMenuItemAlterarUsuario);
+        jMenuItemAlterUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/user_edit.png"))); // NOI18N
+        jMenuItemAlterUser.setText("Alterar Usuário");
+        jMenuUsers.add(jMenuItemAlterUser);
 
-        jMenuItemListarUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/group_go.png"))); // NOI18N
-        jMenuItemListarUsuarios.setText("Listar Usuários");
-        jMenuUsuarios.add(jMenuItemListarUsuarios);
+        jMenuItemShowUsers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/group_go.png"))); // NOI18N
+        jMenuItemShowUsers.setText("Listar Usuários");
+        jMenuUsers.add(jMenuItemShowUsers);
 
-        jMenuBar1.add(jMenuUsuarios);
+        jMenuBar1.add(jMenuUsers);
 
-        jMenuLivros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book.png"))); // NOI18N
-        jMenuLivros.setText("Livros");
-        jMenuLivros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuBooks.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book.png"))); // NOI18N
+        jMenuBooks.setText("Livros");
+        jMenuBooks.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jMenuItemAdicionarLivro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_add.png"))); // NOI18N
-        jMenuItemAdicionarLivro.setText("Adicionar Livro");
-        jMenuItemAdicionarLivro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMenuItemAdicionarLivro.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemRegisterBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_add.png"))); // NOI18N
+        jMenuItemRegisterBook.setText("Adicionar Livro");
+        jMenuItemRegisterBook.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuItemRegisterBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemAdicionarLivroActionPerformed(evt);
+                jMenuItemRegisterBookActionPerformed(evt);
             }
         });
-        jMenuLivros.add(jMenuItemAdicionarLivro);
+        jMenuBooks.add(jMenuItemRegisterBook);
 
-        jMenuItemRemoverLivro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_delete.png"))); // NOI18N
-        jMenuItemRemoverLivro.setText("Remover Livro");
-        jMenuItemRemoverLivro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMenuLivros.add(jMenuItemRemoverLivro);
-
-        jMenuItemAlterarLivro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_edit.png"))); // NOI18N
-        jMenuItemAlterarLivro.setText("Alterar Livro");
-        jMenuItemAlterarLivro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMenuLivros.add(jMenuItemAlterarLivro);
-
-        jMenuItemListarLivros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_open.png"))); // NOI18N
-        jMenuItemListarLivros.setText("Listar Livros");
-        jMenuItemListarLivros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMenuItemListarLivros.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemDeleteBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_delete.png"))); // NOI18N
+        jMenuItemDeleteBook.setText("Remover Livro");
+        jMenuItemDeleteBook.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuItemDeleteBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemListarLivrosActionPerformed(evt);
+                jMenuItemDeleteBookActionPerformed(evt);
             }
         });
-        jMenuLivros.add(jMenuItemListarLivros);
+        jMenuBooks.add(jMenuItemDeleteBook);
 
-        jMenuBar1.add(jMenuLivros);
+        jMenuItemAlterBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_edit.png"))); // NOI18N
+        jMenuItemAlterBook.setText("Alterar Livro");
+        jMenuItemAlterBook.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuBooks.add(jMenuItemAlterBook);
 
-        jMenuExemplares.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book.png"))); // NOI18N
-        jMenuExemplares.setText("Exemplares");
+        jMenuItemShowBooks.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_open.png"))); // NOI18N
+        jMenuItemShowBooks.setText("Listar Livros");
+        jMenuItemShowBooks.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuItemShowBooks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemShowBooksActionPerformed(evt);
+            }
+        });
+        jMenuBooks.add(jMenuItemShowBooks);
 
-        jMenuItemAdicionarExemplar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_add.png"))); // NOI18N
-        jMenuItemAdicionarExemplar.setText("Adicionar Exemplar");
-        jMenuItemAdicionarExemplar.addMouseListener(new java.awt.event.MouseAdapter() {
+        jMenuBar1.add(jMenuBooks);
+
+        jMenuExemplarys.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book.png"))); // NOI18N
+        jMenuExemplarys.setText("Exemplares");
+
+        jMenuItemRegisterExemplary.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_add.png"))); // NOI18N
+        jMenuItemRegisterExemplary.setText("Adicionar Exemplar");
+        jMenuItemRegisterExemplary.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenuItemAdicionarExemplarMouseClicked(evt);
+                jMenuItemRegisterExemplaryMouseClicked(evt);
             }
         });
-        jMenuItemAdicionarExemplar.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemRegisterExemplary.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemAdicionarExemplarActionPerformed(evt);
+                jMenuItemRegisterExemplaryActionPerformed(evt);
             }
         });
-        jMenuExemplares.add(jMenuItemAdicionarExemplar);
+        jMenuExemplarys.add(jMenuItemRegisterExemplary);
 
-        jMenuItemRemoverExemplar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_delete.png"))); // NOI18N
-        jMenuItemRemoverExemplar.setText("Remover Exemplar");
-        jMenuItemRemoverExemplar.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemDeleteExemplary.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_delete.png"))); // NOI18N
+        jMenuItemDeleteExemplary.setText("Remover Exemplar");
+        jMenuItemDeleteExemplary.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemRemoverExemplarActionPerformed(evt);
+                jMenuItemDeleteExemplaryActionPerformed(evt);
             }
         });
-        jMenuExemplares.add(jMenuItemRemoverExemplar);
+        jMenuExemplarys.add(jMenuItemDeleteExemplary);
 
-        jMenuItemAlterarExemplar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_edit.png"))); // NOI18N
-        jMenuItemAlterarExemplar.setText("Alterar Exemplar");
-        jMenuExemplares.add(jMenuItemAlterarExemplar);
+        jMenuItemAlterExemplary.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_edit.png"))); // NOI18N
+        jMenuItemAlterExemplary.setText("Alterar Exemplar");
+        jMenuExemplarys.add(jMenuItemAlterExemplary);
 
-        jMenuItemListarExemplares.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_open.png"))); // NOI18N
-        jMenuItemListarExemplares.setText("Listar Exemplares");
-        jMenuItemListarExemplares.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemShowExemplarys.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_open.png"))); // NOI18N
+        jMenuItemShowExemplarys.setText("Listar Exemplares");
+        jMenuItemShowExemplarys.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemListarExemplaresActionPerformed(evt);
+                jMenuItemShowExemplarysActionPerformed(evt);
             }
         });
-        jMenuExemplares.add(jMenuItemListarExemplares);
+        jMenuExemplarys.add(jMenuItemShowExemplarys);
 
-        jMenuBar1.add(jMenuExemplares);
+        jMenuBar1.add(jMenuExemplarys);
 
-        jMenuEmprestimos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_link.png"))); // NOI18N
-        jMenuEmprestimos.setText("Empréstimos");
+        jMenuLendings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_link.png"))); // NOI18N
+        jMenuLendings.setText("Empréstimos");
 
-        jMenuItemRealizarEmprestimo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_go.png"))); // NOI18N
-        jMenuItemRealizarEmprestimo.setText("Realizar Empréstimo");
-        jMenuItemRealizarEmprestimo.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemDoLending.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_go.png"))); // NOI18N
+        jMenuItemDoLending.setText("Realizar Empréstimo");
+        jMenuItemDoLending.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemRealizarEmprestimoActionPerformed(evt);
+                jMenuItemDoLendingActionPerformed(evt);
             }
         });
-        jMenuEmprestimos.add(jMenuItemRealizarEmprestimo);
+        jMenuLendings.add(jMenuItemDoLending);
 
-        jMenuItemVisualizarEmprestimos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_next.png"))); // NOI18N
-        jMenuItemVisualizarEmprestimos.setText("Visualizar Empréstimos");
-        jMenuEmprestimos.add(jMenuItemVisualizarEmprestimos);
+        jMenuItemShowLendings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_next.png"))); // NOI18N
+        jMenuItemShowLendings.setText("Visualizar Empréstimos");
+        jMenuLendings.add(jMenuItemShowLendings);
 
-        jMenuItemRenovarEmprestimo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_error.png"))); // NOI18N
-        jMenuItemRenovarEmprestimo.setText("Renovar Empréstimo");
-        jMenuItemRenovarEmprestimo.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemRenovateLending.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_error.png"))); // NOI18N
+        jMenuItemRenovateLending.setText("Renovar Empréstimo");
+        jMenuItemRenovateLending.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemRenovarEmprestimoActionPerformed(evt);
+                jMenuItemRenovateLendingActionPerformed(evt);
             }
         });
-        jMenuEmprestimos.add(jMenuItemRenovarEmprestimo);
+        jMenuLendings.add(jMenuItemRenovateLending);
 
-        jMenuBar1.add(jMenuEmprestimos);
+        jMenuBar1.add(jMenuLendings);
 
-        jMenuDevolucao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_key.png"))); // NOI18N
-        jMenuDevolucao.setText("Devolução");
+        jMenuDevolution.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_key.png"))); // NOI18N
+        jMenuDevolution.setText("Devolução");
 
-        jMenuItemRealizarDevolucao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_previous.png"))); // NOI18N
-        jMenuItemRealizarDevolucao.setText("Realizar Devolução");
-        jMenuItemRealizarDevolucao.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemDoDevolution.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_previous.png"))); // NOI18N
+        jMenuItemDoDevolution.setText("Realizar Devolução");
+        jMenuItemDoDevolution.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemRealizarDevolucaoActionPerformed(evt);
+                jMenuItemDoDevolutionActionPerformed(evt);
             }
         });
-        jMenuDevolucao.add(jMenuItemRealizarDevolucao);
+        jMenuDevolution.add(jMenuItemDoDevolution);
 
-        jMenuBar1.add(jMenuDevolucao);
+        jMenuBar1.add(jMenuDevolution);
 
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/user_suit.png"))); // NOI18N
-        jMenu1.setText("Bibliotecário");
+        jMenuLibrarian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/user_suit.png"))); // NOI18N
+        jMenuLibrarian.setText("Bibliotecário");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/user_suit.png"))); // NOI18N
-        jMenuItem1.setText("Adicionar Bibliotecário");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemRegisterLibrarian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/user_suit.png"))); // NOI18N
+        jMenuItemRegisterLibrarian.setText("Adicionar Bibliotecário");
+        jMenuItemRegisterLibrarian.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMenuItemRegisterLibrarianActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenuLibrarian.add(jMenuItemRegisterLibrarian);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jMenuLibrarian);
 
-        jMenuSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/door_out.png"))); // NOI18N
-        jMenuSair.setText("Sair");
-        jMenuSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMenuSair.addMouseListener(new java.awt.event.MouseAdapter() {
+        jMenuExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/door_out.png"))); // NOI18N
+        jMenuExit.setText("Sair");
+        jMenuExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuExit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenuSairMouseClicked(evt);
+                jMenuExitMouseClicked(evt);
             }
         });
-        jMenuSair.addActionListener(new java.awt.event.ActionListener() {
+        jMenuExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuSairActionPerformed(evt);
+                jMenuExitActionPerformed(evt);
             }
         });
-        jMenuBar1.add(jMenuSair);
+        jMenuBar1.add(jMenuExit);
 
         setJMenuBar(jMenuBar1);
 
@@ -274,61 +280,65 @@ public class ViewMain extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItemAdicionarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAdicionarLivroActionPerformed
+    private void jMenuItemRegisterBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRegisterBookActionPerformed
         ChangeViewController.changeView(jDesktopPane1, new ViewRegisterBook());
-    }//GEN-LAST:event_jMenuItemAdicionarLivroActionPerformed
+    }//GEN-LAST:event_jMenuItemRegisterBookActionPerformed
 
-    private void jMenuItemAdicionarExemplarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAdicionarExemplarActionPerformed
+    private void jMenuItemRegisterExemplaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRegisterExemplaryActionPerformed
         ChangeViewController.changeView(jDesktopPane1, new ViewRegisterExemplary());
-    }//GEN-LAST:event_jMenuItemAdicionarExemplarActionPerformed
+    }//GEN-LAST:event_jMenuItemRegisterExemplaryActionPerformed
 
     private void jDesktopPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDesktopPane1MouseClicked
 
     }//GEN-LAST:event_jDesktopPane1MouseClicked
 
-    private void jMenuItemRenovarEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRenovarEmprestimoActionPerformed
+    private void jMenuItemRenovateLendingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRenovateLendingActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItemRenovarEmprestimoActionPerformed
+    }//GEN-LAST:event_jMenuItemRenovateLendingActionPerformed
 
-    private void jMenuItemRealizarDevolucaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRealizarDevolucaoActionPerformed
+    private void jMenuItemDoDevolutionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDoDevolutionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItemRealizarDevolucaoActionPerformed
+    }//GEN-LAST:event_jMenuItemDoDevolutionActionPerformed
 
-    private void jMenuItemRealizarEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRealizarEmprestimoActionPerformed
+    private void jMenuItemDoLendingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDoLendingActionPerformed
         ChangeViewController.changeView(jDesktopPane1, new ViewValidateUser());
-    }//GEN-LAST:event_jMenuItemRealizarEmprestimoActionPerformed
+    }//GEN-LAST:event_jMenuItemDoLendingActionPerformed
 
-    private void jMenuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSairActionPerformed
+    private void jMenuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuExitActionPerformed
 
-    }//GEN-LAST:event_jMenuSairActionPerformed
+    }//GEN-LAST:event_jMenuExitActionPerformed
 
-    private void jMenuSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuSairMouseClicked
+    private void jMenuExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuExitMouseClicked
         ChangeViewController.changeView(this, new ViewLogin());
-    }//GEN-LAST:event_jMenuSairMouseClicked
+    }//GEN-LAST:event_jMenuExitMouseClicked
 
-    private void jMenuItemAdicionarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAdicionarUsuarioActionPerformed
+    private void jMenuItemRegisterUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRegisterUserActionPerformed
         ChangeViewController.changeView(jDesktopPane1, new ViewRegisterUser());
-    }//GEN-LAST:event_jMenuItemAdicionarUsuarioActionPerformed
+    }//GEN-LAST:event_jMenuItemRegisterUserActionPerformed
 
-    private void jMenuItemAdicionarExemplarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemAdicionarExemplarMouseClicked
+    private void jMenuItemRegisterExemplaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemRegisterExemplaryMouseClicked
 
-    }//GEN-LAST:event_jMenuItemAdicionarExemplarMouseClicked
+    }//GEN-LAST:event_jMenuItemRegisterExemplaryMouseClicked
 
-    private void jMenuItemListarLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemListarLivrosActionPerformed
+    private void jMenuItemShowBooksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemShowBooksActionPerformed
         ChangeViewController.changeView(jDesktopPane1, new ViewShowBooks());
-    }//GEN-LAST:event_jMenuItemListarLivrosActionPerformed
+    }//GEN-LAST:event_jMenuItemShowBooksActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMenuItemRegisterLibrarianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRegisterLibrarianActionPerformed
         ChangeViewController.changeView(jDesktopPane1, new ViewRegisterLibrarian());
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jMenuItemRegisterLibrarianActionPerformed
 
-    private void jMenuItemListarExemplaresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemListarExemplaresActionPerformed
+    private void jMenuItemShowExemplarysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemShowExemplarysActionPerformed
         ChangeViewController.changeView(jDesktopPane1, new ViewShowExemplarys());
-    }//GEN-LAST:event_jMenuItemListarExemplaresActionPerformed
+    }//GEN-LAST:event_jMenuItemShowExemplarysActionPerformed
 
-    private void jMenuItemRemoverExemplarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRemoverExemplarActionPerformed
+    private void jMenuItemDeleteExemplaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDeleteExemplaryActionPerformed
         ChangeViewController.changeView(jDesktopPane1, new ViewDeleteExemplary());
-    }//GEN-LAST:event_jMenuItemRemoverExemplarActionPerformed
+    }//GEN-LAST:event_jMenuItemDeleteExemplaryActionPerformed
+
+    private void jMenuItemDeleteBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDeleteBookActionPerformed
+        ChangeViewController.changeView(jDesktopPane1, new ViewDeleteBook());
+    }//GEN-LAST:event_jMenuItemDeleteBookActionPerformed
 
     /**
      * @param args the command line arguments
@@ -368,30 +378,30 @@ public class ViewMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenu jMenuDevolucao;
-    private javax.swing.JMenu jMenuEmprestimos;
-    private javax.swing.JMenu jMenuExemplares;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItemAdicionarExemplar;
-    private javax.swing.JMenuItem jMenuItemAdicionarLivro;
-    private javax.swing.JMenuItem jMenuItemAdicionarUsuario;
-    private javax.swing.JMenuItem jMenuItemAlterarExemplar;
-    private javax.swing.JMenuItem jMenuItemAlterarLivro;
-    private javax.swing.JMenuItem jMenuItemAlterarUsuario;
-    private javax.swing.JMenuItem jMenuItemListarExemplares;
-    private javax.swing.JMenuItem jMenuItemListarLivros;
-    private javax.swing.JMenuItem jMenuItemListarUsuarios;
-    private javax.swing.JMenuItem jMenuItemRealizarDevolucao;
-    private javax.swing.JMenuItem jMenuItemRealizarEmprestimo;
-    private javax.swing.JMenuItem jMenuItemRemoverExemplar;
-    private javax.swing.JMenuItem jMenuItemRemoverLivro;
-    private javax.swing.JMenuItem jMenuItemRemoverUsuario;
-    private javax.swing.JMenuItem jMenuItemRenovarEmprestimo;
-    private javax.swing.JMenuItem jMenuItemVisualizarEmprestimos;
-    private javax.swing.JMenu jMenuLivros;
-    private javax.swing.JMenu jMenuSair;
-    private javax.swing.JMenu jMenuUsuarios;
+    private javax.swing.JMenu jMenuBooks;
+    private javax.swing.JMenu jMenuDevolution;
+    private javax.swing.JMenu jMenuExemplarys;
+    private javax.swing.JMenu jMenuExit;
+    private javax.swing.JMenuItem jMenuItemAlterBook;
+    private javax.swing.JMenuItem jMenuItemAlterExemplary;
+    private javax.swing.JMenuItem jMenuItemAlterUser;
+    private javax.swing.JMenuItem jMenuItemDeleteBook;
+    private javax.swing.JMenuItem jMenuItemDeleteExemplary;
+    private javax.swing.JMenuItem jMenuItemDeleteUser;
+    private javax.swing.JMenuItem jMenuItemDoDevolution;
+    private javax.swing.JMenuItem jMenuItemDoLending;
+    private javax.swing.JMenuItem jMenuItemRegisterBook;
+    private javax.swing.JMenuItem jMenuItemRegisterExemplary;
+    private javax.swing.JMenuItem jMenuItemRegisterLibrarian;
+    private javax.swing.JMenuItem jMenuItemRegisterUser;
+    private javax.swing.JMenuItem jMenuItemRenovateLending;
+    private javax.swing.JMenuItem jMenuItemShowBooks;
+    private javax.swing.JMenuItem jMenuItemShowExemplarys;
+    private javax.swing.JMenuItem jMenuItemShowLendings;
+    private javax.swing.JMenuItem jMenuItemShowUsers;
+    private javax.swing.JMenu jMenuLendings;
+    private javax.swing.JMenu jMenuLibrarian;
+    private javax.swing.JMenu jMenuUsers;
     // End of variables declaration//GEN-END:variables
 }

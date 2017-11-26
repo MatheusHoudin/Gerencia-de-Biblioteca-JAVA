@@ -7,10 +7,13 @@ package Controller;
 
 import Connection.DAOFactory;
 import Model.Bean.Exemplary;
+import Model.DAO.BookDAO;
 import Model.DAO.ExemplaryDAO;
+import View.ViewDelete.ViewDeleteBook;
 import View.ViewDelete.ViewDeleteExemplary;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JTable;
 
 /**
  *
@@ -18,15 +21,15 @@ import java.util.List;
  */
 public class DAODeleteController {
     
-    public static boolean removeExemplary(ViewDeleteExemplary viewDeleteExemplary){
+    public static boolean deleteExemplary(ViewDeleteExemplary viewDeleteExemplary){
         int[] rowsSelected = viewDeleteExemplary.getjTableExemplarys().getSelectedRows();
         int numberExemplarysSelected = rowsSelected.length;
         
         ExemplaryDAO exDAO = DAOFactory.getInstanceExemplaryDAO();
-        List<Exemplary> exemplarys = DAODeleteController.createExemplarysToDelete(rowsSelected, viewDeleteExemplary);
+        List<Integer> idExemplarys = DAODeleteController.searchIdExemplarys(rowsSelected, viewDeleteExemplary.getjTableExemplarys());
         
-        for(Exemplary ex:exemplarys){
-            if(exDAO.delete(ex)){
+        for(Integer id:idExemplarys){
+            if(exDAO.delete(id)){
                 numberExemplarysSelected--;
             }
             exDAO = DAOFactory.getInstanceExemplaryDAO();
@@ -34,23 +37,34 @@ public class DAODeleteController {
         return numberExemplarysSelected==0;
     }
     
-    private static List<Exemplary> createExemplarysToDelete(int[] positions,ViewDeleteExemplary viewDeleteExemplary){
-        List<Exemplary> exemplarys = new ArrayList<>();
-        
+    private static List<Integer> searchIdExemplarys(int[] positions,JTable jTable){
+        List<Integer> ids = new ArrayList<>();
+                
         for(int i:positions){
-            Exemplary ex = new Exemplary();
-            ex.setIdExemplary((int)viewDeleteExemplary.getjTableExemplarys().getValueAt(i, 0));
-            ex.setTitle((String)viewDeleteExemplary.getjTableExemplarys().getValueAt(i, 1));
-            ex.setId((int)viewDeleteExemplary.getjTableExemplarys().getValueAt(i, 3));
-            String avaliable = (String)viewDeleteExemplary.getjTableExemplarys().getValueAt(i, 2);
-        
-            if(avaliable.equals("Disponível")){
-                ex.setAvaliable(true);
-            }else{
-                ex.setAvaliable(false);
-            }
-            exemplarys.add(ex);
+            int id = (int)jTable.getValueAt(i, 0);
+            ids.add(id);
         }
-        return exemplarys;
+        return ids;
     }
+    
+    public static boolean deleteBook(ViewDeleteBook viewDeleteBook){
+        int[] rowsSelected = viewDeleteBook.getjTableBooks().getSelectedRows();
+        int numberBooksSelected = rowsSelected.length;
+        
+        ExemplaryDAO exDAO = DAOFactory.getInstanceExemplaryDAO();
+        BookDAO bDAO = DAOFactory.getInstanceBookDAO();
+        List<Integer> idBooks = DAODeleteController.searchIdExemplarys(rowsSelected, viewDeleteBook.getjTableBooks());
+        
+        for(Integer id:idBooks){
+            if(exDAO.deleteByBookId(id) && bDAO.delete(id)){
+                numberBooksSelected--;
+            }
+            exDAO = DAOFactory.getInstanceExemplaryDAO();
+            bDAO = DAOFactory.getInstanceBookDAO();
+        }
+        return numberBooksSelected==0;
+    }
+    
+    
+ 
 }

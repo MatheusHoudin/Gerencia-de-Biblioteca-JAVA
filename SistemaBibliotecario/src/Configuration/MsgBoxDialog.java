@@ -5,6 +5,7 @@
  */
 package Configuration;
 
+import View.ViewDelete.ViewDeleteExemplary;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -21,6 +22,11 @@ public class MsgBoxDialog {
         }else{
             j.dispose();
         }
+    }
+    
+    public static boolean showConfirmDialogOnDeleteBook(){
+        int confirmation = JOptionPane.showConfirmDialog(null, "Tem certeza de que quer excluir os livros e os exemplares relacionados:", "Excluir Livros e Exemplares", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        return confirmation==JOptionPane.YES_OPTION;
     }
    
 }

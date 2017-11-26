@@ -34,6 +34,7 @@ public class DAOFindController {
         
         for(Book book:bDao.findAll()){
             dtm.addRow(new Object[]{
+                book.getId(),
                 book.getTitle(),
                 book.getTheme(),
                 book.getAuthor(),

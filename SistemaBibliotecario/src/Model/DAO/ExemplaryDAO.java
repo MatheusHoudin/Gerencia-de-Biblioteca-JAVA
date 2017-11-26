@@ -147,13 +147,13 @@ public class ExemplaryDAO {
          return exemplarys;
     }
     
-    public boolean delete(Exemplary exemplary){
+    public boolean delete(int idExemplary){
         String sql = "DELETE FROM exemplary WHERE exemplary.id = ?";
         PreparedStatement stmt = null;
         
          try {
              stmt = con.prepareStatement(sql);
-             stmt.setInt(1, exemplary.getIdExemplary());
+             stmt.setInt(1, idExemplary);
              stmt.executeUpdate();
              return true;
          } catch (SQLException ex) {
@@ -162,7 +162,23 @@ public class ExemplaryDAO {
          }finally{
              ConnectionFactory.closeConnection(con, stmt);
          }
-         
+    }
+    
+     public boolean deleteByBookId(int idBook){
+        String sql = "DELETE FROM exemplary WHERE exemplary.book = ?";
+        PreparedStatement stmt = null;
+        
+         try {
+             stmt = con.prepareStatement(sql);
+             stmt.setInt(1, idBook);
+             stmt.executeUpdate();
+             return true;
+         } catch (SQLException ex) {
+             System.err.println("Error on delete exemplary:"+ex);
+             return false;
+         }finally{
+             ConnectionFactory.closeConnection(con, stmt);
+         }
     }
 
     public void setConnection(Connection con) {

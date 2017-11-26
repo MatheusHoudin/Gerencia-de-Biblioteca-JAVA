@@ -62,11 +62,11 @@ public class ViewShowBooks extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Titulo", "Tema", "Autor", "Edição", "Editora"
+                "Id", "Titulo", "Tema", "Autor", "Edição", "Editora"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -111,7 +111,7 @@ public class ViewShowBooks extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane1)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 57, Short.MAX_VALUE)
+                        .addGap(0, 66, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(txtTitleFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -131,7 +131,7 @@ public class ViewShowBooks extends javax.swing.JInternalFrame {
                     .addComponent(btnFiltrate, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRemoveFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 

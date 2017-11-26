@@ -5,6 +5,7 @@
  */
 package View.ViewDelete;
 
+import Configuration.MsgBoxDialog;
 import Controller.DAODeleteController;
 import Controller.DAOFindController;
 import javax.swing.JOptionPane;
@@ -14,14 +15,14 @@ import javax.swing.JTable;
  *
  * @author XXXXXX
  */
-public class ViewDeleteExemplary extends javax.swing.JInternalFrame {
+public class ViewDeleteBook extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form ViewDeleteExemplary
+     * Creates new form ViewDeleteBook
      */
-    public ViewDeleteExemplary() {
+    public ViewDeleteBook() {
         initComponents();
-        DAOFindController.fillJTableExemplarys(jTableExemplarys);
+        DAOFindController.fillJTableBooks(jTableBooks);
     }
 
     /**
@@ -34,28 +35,30 @@ public class ViewDeleteExemplary extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableExemplarys = new javax.swing.JTable();
+        jTableBooks = new javax.swing.JTable();
         btnExcluir = new javax.swing.JButton();
 
         setClosable(true);
+        setPreferredSize(new java.awt.Dimension(832, 335));
 
-        jTableExemplarys.setModel(new javax.swing.table.DefaultTableModel(
+        jTableBooks.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Id", "Título", "Disponibilidade", "Id Livro"
+                "Titulo", "Tema", "Autor", "Edição", "Editora"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTableExemplarys);
+        jTableBooks.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jTableBooks);
 
         btnExcluir.setText("Excluir");
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -68,51 +71,48 @@ public class ViewDeleteExemplary extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 816, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(298, 298, 298)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(306, Short.MAX_VALUE))
+                .addGap(305, 305, 305))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        if(this.jTableExemplarys.getSelectedRow()!=-1){
-            if(DAODeleteController.deleteExemplary(this)){
-                JOptionPane.showMessageDialog(rootPane, "Exemplares excluídos com sucesso");
-            }else{
-                JOptionPane.showMessageDialog(rootPane, "Algum exemplar não foi excluído");
+        if(this.jTableBooks.getSelectedRow()!=-1){
+            if(MsgBoxDialog.showConfirmDialogOnDeleteBook()){
+                if(DAODeleteController.deleteBook(this)){
+                    JOptionPane.showMessageDialog(rootPane, "Livros e Exemplares excluídos com sucesso");
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "Algum Exemplar ou Livro não foi excluído");
+                }
+                DAOFindController.fillJTableBooks(jTableBooks);
             }
-            DAOFindController.fillJTableExemplarys(jTableExemplarys);
         }else{
             JOptionPane.showMessageDialog(rootPane, "Selecione ao menos uma linha da tabela");
         }
-            
     }//GEN-LAST:event_btnExcluirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExcluir;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableExemplarys;
+    private javax.swing.JTable jTableBooks;
     // End of variables declaration//GEN-END:variables
 
-    public JTable getjTableExemplarys() {
-        return jTableExemplarys;
+    public JTable getjTableBooks() {
+        return jTableBooks;
     }
-    
 }
