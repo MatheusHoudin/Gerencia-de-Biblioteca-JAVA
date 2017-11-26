@@ -7,6 +7,7 @@ package View.ViewShow;
 
 import Controller.ChangeViewController;
 import Controller.DAOFindController;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,6 +35,12 @@ public class ViewShowExemplarys extends javax.swing.JInternalFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableExemplarys = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        txtFilter = new javax.swing.JTextField();
+        btnFilter = new javax.swing.JButton();
+        btnRemoveFilter = new javax.swing.JButton();
+
+        setClosable(true);
 
         jTableExemplarys.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -51,7 +58,26 @@ public class ViewShowExemplarys extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTableExemplarys.setAutoscrolls(false);
+        jTableExemplarys.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTableExemplarys);
+
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel1.setText("Filtrar por título");
+
+        btnFilter.setText("Filtrar");
+        btnFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFilterActionPerformed(evt);
+            }
+        });
+
+        btnRemoveFilter.setText("Remover Filtro");
+        btnRemoveFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveFilterActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -59,13 +85,32 @@ public class ViewShowExemplarys extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRemoveFilter)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(68, Short.MAX_VALUE)
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnRemoveFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1)))
+                .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -73,9 +118,27 @@ public class ViewShowExemplarys extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
+        if(this.txtFilter.getText().equals("")){
+            JOptionPane.showMessageDialog(rootPane, "Insira dados no filtro");
+        }else{
+            DAOFindController.fillJTableExemlarys(jTableExemplarys, this.txtFilter.getText());
+            ChangeViewController.addColorOnRows(jTableExemplarys);
+        }
+    }//GEN-LAST:event_btnFilterActionPerformed
+
+    private void btnRemoveFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveFilterActionPerformed
+        DAOFindController.fillJTableExemplarys(jTableExemplarys);
+        ChangeViewController.addColorOnRows(jTableExemplarys);
+    }//GEN-LAST:event_btnRemoveFilterActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnFilter;
+    private javax.swing.JButton btnRemoveFilter;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableExemplarys;
+    private javax.swing.JTextField txtFilter;
     // End of variables declaration//GEN-END:variables
 }

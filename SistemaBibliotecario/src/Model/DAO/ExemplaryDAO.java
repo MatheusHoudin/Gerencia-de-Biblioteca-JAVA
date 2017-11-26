@@ -113,6 +113,57 @@ public class ExemplaryDAO {
         
         return exemplarys;
     }
+    
+    public List<Exemplary> find(String title){
+        String sql = "SELECT * FROM exemplary JOIN book ON book.id = exemplary.book WHERE book.title LIKE ?";
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        List<Exemplary> exemplarys = new ArrayList<>();
+        
+         try {
+             stmt = con.prepareStatement(sql);
+             stmt.setString(1, "%"+title+"%");
+             
+             rs = stmt.executeQuery();
+             
+             while(rs.next()){
+                 Exemplary ex = new Exemplary();
+                 ex.setIdExemplary(rs.getInt("id"));
+                 ex.setTitle(rs.getString("title"));
+                 ex.setId(rs.getInt("book"));
+                 if(rs.getInt("avaliable")==1){
+                     ex.setAvaliable(true);
+                 }else{
+                     ex.setAvaliable(false);
+                 }
+                 exemplarys.add(ex);
+             }
+         } catch (SQLException ex) {
+             System.err.println("Error on find exemplarys:"+ex);
+         }finally{
+             ConnectionFactory.closeConnection(con, stmt, rs);
+         }
+         return exemplarys;
+    }
+    
+    public boolean delete(Exemplary exemplary){
+        String sql = "DELETE FROM exemplary WHERE exemplary.id = ?";
+        PreparedStatement stmt = null;
+        
+         try {
+             stmt = con.prepareStatement(sql);
+             stmt.setInt(1, exemplary.getIdExemplary());
+             stmt.executeUpdate();
+             return true;
+         } catch (SQLException ex) {
+             System.err.println("Error on delete exemplary:"+ex);
+             return false;
+         }finally{
+             ConnectionFactory.closeConnection(con, stmt);
+         }
+         
+    }
 
     public void setConnection(Connection con) {
         this.con = con;

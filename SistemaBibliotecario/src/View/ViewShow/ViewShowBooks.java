@@ -73,6 +73,7 @@ public class ViewShowBooks extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTableBooks.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTableBooks);
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N

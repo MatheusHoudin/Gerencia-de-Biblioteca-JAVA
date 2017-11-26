@@ -7,6 +7,7 @@ package View.ViewSystem;
 
 import View.ViewValidate.ViewLogin;
 import Controller.ChangeViewController;
+import View.ViewDelete.ViewDeleteExemplary;
 import View.ViewValidate.ViewValidateUser;
 import View.ViewShow.ViewShowBooks;
 import View.ViewRegister.ViewRegisterExemplary;
@@ -165,6 +166,11 @@ public class ViewMain extends javax.swing.JFrame {
 
         jMenuItemRemoverExemplar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_delete.png"))); // NOI18N
         jMenuItemRemoverExemplar.setText("Remover Exemplar");
+        jMenuItemRemoverExemplar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemRemoverExemplarActionPerformed(evt);
+            }
+        });
         jMenuExemplares.add(jMenuItemRemoverExemplar);
 
         jMenuItemAlterarExemplar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_edit.png"))); // NOI18N
@@ -319,6 +325,10 @@ public class ViewMain extends javax.swing.JFrame {
     private void jMenuItemListarExemplaresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemListarExemplaresActionPerformed
         ChangeViewController.changeView(jDesktopPane1, new ViewShowExemplarys());
     }//GEN-LAST:event_jMenuItemListarExemplaresActionPerformed
+
+    private void jMenuItemRemoverExemplarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRemoverExemplarActionPerformed
+        ChangeViewController.changeView(jDesktopPane1, new ViewDeleteExemplary());
+    }//GEN-LAST:event_jMenuItemRemoverExemplarActionPerformed
 
     /**
      * @param args the command line arguments

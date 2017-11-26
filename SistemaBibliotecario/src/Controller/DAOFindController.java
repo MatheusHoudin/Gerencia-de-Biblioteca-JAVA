@@ -75,12 +75,27 @@ public class DAOFindController {
         }
     }
     
-        public static void fillJTableExemplarys(JTable jTableExemplarys){
+    public static void fillJTableExemplarys(JTable jTableExemplarys){
         DefaultTableModel dtm = (DefaultTableModel) jTableExemplarys.getModel();
         dtm.setNumRows(0);
         ExemplaryDAO exemplaryDAO = DAOFactory.getInstanceExemplaryDAO();
         
         for(Exemplary exemplary:exemplaryDAO.findAll()){
+            dtm.addRow(new Object[]{
+                exemplary.getIdExemplary(),
+                exemplary.getTitle(),
+                exemplary.isAvaliable() ? "Disponível":"Indisponível",
+                exemplary.getId()
+            });
+        }
+    }
+    
+    public static void fillJTableExemlarys(JTable jTableExemplarys,String title){
+        DefaultTableModel dtm = (DefaultTableModel) jTableExemplarys.getModel();
+        dtm.setNumRows(0);
+        ExemplaryDAO exemplaryDAO = DAOFactory.getInstanceExemplaryDAO();
+        
+        for(Exemplary exemplary:exemplaryDAO.find(title)){
             dtm.addRow(new Object[]{
                 exemplary.getIdExemplary(),
                 exemplary.getTitle(),

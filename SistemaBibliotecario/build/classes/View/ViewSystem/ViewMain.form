@@ -139,6 +139,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Remover Exemplar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemRemoverExemplarActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemAlterarExemplar">
               <Properties>
