@@ -16,6 +16,7 @@ import View.ViewRegister.ViewRegisterBook;
 import View.ViewRegister.ViewRegisterLibrarian;
 import View.ViewRegister.ViewRegisterUser;
 import View.ViewShow.ViewShowExemplarys;
+import View.ViewShow.ViewShowUsers;
 
 /**
  *
@@ -54,7 +55,6 @@ public class ViewMain extends javax.swing.JFrame {
         jMenuExemplarys = new javax.swing.JMenu();
         jMenuItemRegisterExemplary = new javax.swing.JMenuItem();
         jMenuItemDeleteExemplary = new javax.swing.JMenuItem();
-        jMenuItemAlterExemplary = new javax.swing.JMenuItem();
         jMenuItemShowExemplarys = new javax.swing.JMenuItem();
         jMenuLendings = new javax.swing.JMenu();
         jMenuItemDoLending = new javax.swing.JMenuItem();
@@ -108,6 +108,11 @@ public class ViewMain extends javax.swing.JFrame {
 
         jMenuItemShowUsers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/group_go.png"))); // NOI18N
         jMenuItemShowUsers.setText("Listar Usuários");
+        jMenuItemShowUsers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemShowUsersActionPerformed(evt);
+            }
+        });
         jMenuUsers.add(jMenuItemShowUsers);
 
         jMenuBar1.add(jMenuUsers);
@@ -178,10 +183,6 @@ public class ViewMain extends javax.swing.JFrame {
             }
         });
         jMenuExemplarys.add(jMenuItemDeleteExemplary);
-
-        jMenuItemAlterExemplary.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_edit.png"))); // NOI18N
-        jMenuItemAlterExemplary.setText("Alterar Exemplar");
-        jMenuExemplarys.add(jMenuItemAlterExemplary);
 
         jMenuItemShowExemplarys.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_open.png"))); // NOI18N
         jMenuItemShowExemplarys.setText("Listar Exemplares");
@@ -340,6 +341,10 @@ public class ViewMain extends javax.swing.JFrame {
         ChangeViewController.changeView(jDesktopPane1, new ViewDeleteBook());
     }//GEN-LAST:event_jMenuItemDeleteBookActionPerformed
 
+    private void jMenuItemShowUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemShowUsersActionPerformed
+        ChangeViewController.changeView(jDesktopPane1, new ViewShowUsers());
+    }//GEN-LAST:event_jMenuItemShowUsersActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -384,7 +389,6 @@ public class ViewMain extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuExemplarys;
     private javax.swing.JMenu jMenuExit;
     private javax.swing.JMenuItem jMenuItemAlterBook;
-    private javax.swing.JMenuItem jMenuItemAlterExemplary;
     private javax.swing.JMenuItem jMenuItemAlterUser;
     private javax.swing.JMenuItem jMenuItemDeleteBook;
     private javax.swing.JMenuItem jMenuItemDeleteExemplary;
