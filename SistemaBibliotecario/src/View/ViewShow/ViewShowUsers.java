@@ -5,7 +5,6 @@
  */
 package View.ViewShow;
 
-import Controller.ChangeViewController;
 import Controller.DAOFindController;
 import javax.swing.JOptionPane;
 
@@ -13,15 +12,14 @@ import javax.swing.JOptionPane;
  *
  * @author XXXXXX
  */
-public class ViewShowExemplarys extends javax.swing.JInternalFrame {
+public class ViewShowUsers extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form ViewShowExemplarys
+     * Creates new form ViewShowUsers
      */
-    public ViewShowExemplarys() {
+    public ViewShowUsers() {
         initComponents();
-        DAOFindController.fillJTableExemplarys(jTableExemplarys);
-        ChangeViewController.addColorOnRows(jTableExemplarys);
+        DAOFindController.fillJTableUsers(jTableUsers);
     }
 
     /**
@@ -34,41 +32,40 @@ public class ViewShowExemplarys extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableExemplarys = new javax.swing.JTable();
+        jTableUsers = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         txtFilter = new javax.swing.JTextField();
-        btnFilter = new javax.swing.JButton();
+        btnFiltrate = new javax.swing.JButton();
         btnRemoveFilter = new javax.swing.JButton();
 
         setClosable(true);
 
-        jTableExemplarys.setModel(new javax.swing.table.DefaultTableModel(
+        jTableUsers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Id", "Título", "Disponibilidade", "Id Livro"
+                "Id", "Nome", "Login"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jTableExemplarys.setAutoscrolls(false);
-        jTableExemplarys.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTableExemplarys);
+        jTableUsers.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jTableUsers);
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel1.setText("Filtrar por título");
+        jLabel1.setText("Filtrar por nome");
 
-        btnFilter.setText("Filtrar");
-        btnFilter.addActionListener(new java.awt.event.ActionListener() {
+        btnFiltrate.setText("Filtrar");
+        btnFiltrate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFilterActionPerformed(evt);
+                btnFiltrateActionPerformed(evt);
             }
         });
 
@@ -86,59 +83,55 @@ public class ViewShowExemplarys extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 835, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnFiltrate, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnRemoveFilter)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(25, 25, 25))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnRemoveFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1)))
                 .addGap(28, 28, 28)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFiltrate, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRemoveFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
-        if(this.txtFilter.getText().equals("")){
-            JOptionPane.showMessageDialog(rootPane, "Insira dados no filtro");
+    private void btnFiltrateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrateActionPerformed
+        if(!this.txtFilter.getText().equals("")){
+            DAOFindController.fillJTableUsers(jTableUsers, this.txtFilter.getText());
         }else{
-            DAOFindController.fillJTableExemlarys(jTableExemplarys, this.txtFilter.getText());
-            ChangeViewController.addColorOnRows(jTableExemplarys);
+            JOptionPane.showMessageDialog(rootPane, "Insira algum dado no filtro!");
         }
-    }//GEN-LAST:event_btnFilterActionPerformed
+    }//GEN-LAST:event_btnFiltrateActionPerformed
 
     private void btnRemoveFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveFilterActionPerformed
-        DAOFindController.fillJTableExemplarys(jTableExemplarys);
-        ChangeViewController.addColorOnRows(jTableExemplarys);
+        DAOFindController.fillJTableUsers(jTableUsers);
     }//GEN-LAST:event_btnRemoveFilterActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnFilter;
+    private javax.swing.JButton btnFiltrate;
     private javax.swing.JButton btnRemoveFilter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableExemplarys;
+    private javax.swing.JTable jTableUsers;
     private javax.swing.JTextField txtFilter;
     // End of variables declaration//GEN-END:variables
 }

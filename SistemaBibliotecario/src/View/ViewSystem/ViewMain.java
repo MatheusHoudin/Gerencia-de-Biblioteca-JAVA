@@ -9,6 +9,7 @@ import View.ViewValidate.ViewLogin;
 import Controller.ChangeViewController;
 import View.ViewDelete.ViewDeleteBook;
 import View.ViewDelete.ViewDeleteExemplary;
+import View.ViewDelete.ViewDeleteUser;
 import View.ViewValidate.ViewValidateUser;
 import View.ViewShow.ViewShowBooks;
 import View.ViewRegister.ViewRegisterExemplary;
@@ -100,6 +101,11 @@ public class ViewMain extends javax.swing.JFrame {
 
         jMenuItemDeleteUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/user_delete.png"))); // NOI18N
         jMenuItemDeleteUser.setText("Remover Usuario");
+        jMenuItemDeleteUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemDeleteUserActionPerformed(evt);
+            }
+        });
         jMenuUsers.add(jMenuItemDeleteUser);
 
         jMenuItemAlterUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/user_edit.png"))); // NOI18N
@@ -344,6 +350,10 @@ public class ViewMain extends javax.swing.JFrame {
     private void jMenuItemShowUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemShowUsersActionPerformed
         ChangeViewController.changeView(jDesktopPane1, new ViewShowUsers());
     }//GEN-LAST:event_jMenuItemShowUsersActionPerformed
+
+    private void jMenuItemDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDeleteUserActionPerformed
+        ChangeViewController.changeView(jDesktopPane1, new ViewDeleteUser());
+    }//GEN-LAST:event_jMenuItemDeleteUserActionPerformed
 
     /**
      * @param args the command line arguments

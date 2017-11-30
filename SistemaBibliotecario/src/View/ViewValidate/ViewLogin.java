@@ -155,10 +155,11 @@ public class ViewLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsuarioLoginActionPerformed
 
     private void btnLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogarActionPerformed
-        if((this.txtUsuarioLogin.getText().equals(""))||(this.txtSenhaLogin.getText().equals(""))){
+        String password = String.valueOf(this.txtSenhaLogin.getPassword());
+        if((this.txtUsuarioLogin.getText().equals(""))||(password.equals(""))){
             JOptionPane.showMessageDialog(rootPane, "Preencha todos os campos!");
         }else{
-            if(LoginController.doLogin(this.txtUsuarioLogin.getText(), this.txtSenhaLogin.getText())){
+            if(LoginController.doLogin(this.txtUsuarioLogin.getText(), password)){
                 ChangeViewController.changeView(this, new ViewMain());
             }else{
                 JOptionPane.showMessageDialog(rootPane, "Dados inválidos!");

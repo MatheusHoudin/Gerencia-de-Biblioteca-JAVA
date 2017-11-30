@@ -6,7 +6,7 @@
 package View.ViewRegister;
 
 import Configuration.MsgBoxDialog;
-import Controller.DAOInsertController;
+import Controller.DAORegisterController;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -149,14 +149,20 @@ public class ViewRegisterLibrarian extends javax.swing.JInternalFrame {
            this.txtUser.getText().equals("")){
             JOptionPane.showMessageDialog(rootPane, "Preencha todos os dados");
         }else{
-            if(DAOInsertController.insertLibrarian(this)){
+            if(DAORegisterController.insertLibrarian(this)){
+                this.resetFields();
                 JOptionPane.showMessageDialog(rootPane, "Bibliotecário cadastrado");
             }else{
                 JOptionPane.showMessageDialog(rootPane, "Este nome de usuário já existe!");
             }
         }
     }//GEN-LAST:event_btnInsertActionPerformed
-
+    
+     private void resetFields(){
+        this.txtName.setText("");
+        this.txtPassword.setText("");
+        this.txtUser.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;

@@ -6,7 +6,7 @@
 package View.ViewRegister;
 
 import Configuration.MsgBoxDialog;
-import Controller.DAOInsertController;
+import Controller.DAORegisterController;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -171,7 +171,8 @@ public class ViewRegisterUser extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(rootPane, "Preencha todos os dados");
         } else {
             if (this.txtPasswordUser.getPassword().length >= 8 && this.txtPasswordUser.getPassword().length <= 16) {
-                if (DAOInsertController.insertUser(this)) {
+                if (DAORegisterController.insertUser(this)) {
+                    this.resetFields();
                     JOptionPane.showMessageDialog(rootPane, "Usuário cadastrado!");
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Este nome de usuário já existe!");
@@ -181,7 +182,12 @@ public class ViewRegisterUser extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
-
+    
+    private void resetFields(){
+        this.txtNameUser.setText("");
+        this.txtPasswordUser.setText("");
+        this.txtUser.setText("");
+    }
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
         MsgBoxDialog.showMsgYesNo(this);
     }//GEN-LAST:event_formInternalFrameClosing

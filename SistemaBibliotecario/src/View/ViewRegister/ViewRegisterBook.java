@@ -6,7 +6,7 @@
 package View.ViewRegister;
 
 import Configuration.MsgBoxDialog;
-import Controller.DAOInsertController;
+import Controller.DAORegisterController;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
@@ -177,7 +177,8 @@ public class ViewRegisterBook extends javax.swing.JInternalFrame {
            this.txtTheme.getText().equals("") || this.txtTitle.getText().equals("")){
             JOptionPane.showMessageDialog(rootPane, "Preencha todos os dados");
         }else{
-            if(DAOInsertController.insertBook(this)){
+            if(DAORegisterController.insertBook(this)){
+                this.resetFields();
                 JOptionPane.showMessageDialog(rootPane, "Livro inserido com sucesso");
             }else{
                 JOptionPane.showMessageDialog(rootPane, "Erro ao inserir livro");
@@ -185,7 +186,12 @@ public class ViewRegisterBook extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnCadastrarLivroActionPerformed
 
-
+    private void resetFields(){
+        this.txtAuthor.setText("");
+        this.txtPublishingCompany.setText("");
+        this.txtTheme.setText("");
+        this.txtTitle.setText("");
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarLivro;
     private javax.swing.JButton btnCancelarCadastroLivro;
