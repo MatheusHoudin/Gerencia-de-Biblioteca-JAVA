@@ -6,6 +6,10 @@
 package View.ViewUpdate;
 
 import Controller.DAOFindController;
+import Controller.DAOUpdateController;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -18,6 +22,7 @@ public class ViewUpdateUser extends javax.swing.JInternalFrame {
      */
     public ViewUpdateUser() {
         initComponents();
+        this.btnUpdate.setVisible(false);
         DAOFindController.fillJTableUsers(jTableUsers);
     }
 
@@ -38,6 +43,9 @@ public class ViewUpdateUser extends javax.swing.JInternalFrame {
         txtUser = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JTextField();
+        btnUpdate = new javax.swing.JButton();
+
+        setClosable(true);
 
         jTableUsers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -78,6 +86,18 @@ public class ViewUpdateUser extends javax.swing.JInternalFrame {
             }
         });
 
+        btnUpdate.setText("Atualizar");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+        btnUpdate.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                btnUpdatePropertyChange(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,6 +123,10 @@ public class ViewUpdateUser extends javax.swing.JInternalFrame {
                                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 3, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(248, 248, 248)
+                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,9 +142,11 @@ public class ViewUpdateUser extends javax.swing.JInternalFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
                         .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -130,7 +156,8 @@ public class ViewUpdateUser extends javax.swing.JInternalFrame {
         if(this.jTableUsers.getSelectedRow()!=-1){
             this.txtName.setText(this.jTableUsers.getValueAt(this.jTableUsers.getSelectedRow(), 1).toString());
             this.txtUser.setText(this.jTableUsers.getValueAt(this.jTableUsers.getSelectedRow(), 2).toString());
-            this.txtPassword.setText(this.jTableUsers.getValueAt(this.jTableUsers.getSelectedRow(), 3).toString()); 
+            this.txtPassword.setText(this.jTableUsers.getValueAt(this.jTableUsers.getSelectedRow(), 3).toString());
+            this.btnUpdate.setVisible(true);
         }
     }//GEN-LAST:event_jTableUsersMouseClicked
 
@@ -138,8 +165,49 @@ public class ViewUpdateUser extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPasswordActionPerformed
 
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        if(this.isUpdated()){
+            if(DAOUpdateController.updateUser(this)){
+                JOptionPane.showMessageDialog(rootPane, "Dados alterados com sucesso");
+                DAOFindController.fillJTableUsers(jTableUsers);
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Erro ao alterar dados");
+            }
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Dados inalterados");
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
+    private void btnUpdatePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_btnUpdatePropertyChange
+    }//GEN-LAST:event_btnUpdatePropertyChange
+    
+    private boolean isUpdated(){
+        String name = this.jTableUsers.getValueAt(this.jTableUsers.getSelectedRow(), 1).toString();
+        String user = this.jTableUsers.getValueAt(this.jTableUsers.getSelectedRow(), 2).toString();
+        String password = this.jTableUsers.getValueAt(this.jTableUsers.getSelectedRow(), 3).toString();
+        
+        return !this.txtName.getText().equals(name) || !this.txtPassword.getText().equals(password) || !this.txtUser.getText().equals(user);
+    }
+
+    public JTable getjTableUsers() {
+        return jTableUsers;
+    }
+
+    public JTextField getTxtName() {
+        return txtName;
+    }
+
+    public JTextField getTxtPassword() {
+        return txtPassword;
+    }
+
+    public JTextField getTxtUser() {
+        return txtUser;
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
