@@ -28,8 +28,8 @@ public class ViewDoLending extends javax.swing.JInternalFrame {
     public ViewDoLending() {
         initComponents();
         DAOFindController.fillJComboBoxBooks(jComboBoxListaLivros);
-        DAOFindController.fillJTableExemplarys(jTableExemplares, (Book)this.jComboBoxListaLivros.getSelectedItem());
-        ChangeViewController.addColorOnRows(jTableExemplares);
+        DAOFindController.fillJTableExemplarys(jTableExemplarys, (Book)this.jComboBoxListaLivros.getSelectedItem());
+        ChangeViewController.addColorOnRows(jTableExemplarys);
     }
 
     /**
@@ -44,7 +44,7 @@ public class ViewDoLending extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jComboBoxListaLivros = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableExemplares = new javax.swing.JTable();
+        jTableExemplarys = new javax.swing.JTable();
         btnRealizarEmprestimo = new javax.swing.JButton();
 
         setClosable(true);
@@ -81,7 +81,7 @@ public class ViewDoLending extends javax.swing.JInternalFrame {
             }
         });
 
-        jTableExemplares.setModel(new javax.swing.table.DefaultTableModel(
+        jTableExemplarys.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -97,7 +97,7 @@ public class ViewDoLending extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTableExemplares);
+        jScrollPane1.setViewportView(jTableExemplarys);
 
         btnRealizarEmprestimo.setText("Realizar empréstimo");
         btnRealizarEmprestimo.addActionListener(new java.awt.event.ActionListener() {
@@ -155,15 +155,18 @@ public class ViewDoLending extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnRealizarEmprestimoActionPerformed
 
     private void jComboBoxListaLivrosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxListaLivrosItemStateChanged
-        DAOFindController.fillJTableExemplarys(jTableExemplares, (Book)this.jComboBoxListaLivros.getSelectedItem());
-        ChangeViewController.addColorOnRows(jTableExemplares);
+        DAOFindController.fillJTableExemplarys(jTableExemplarys, (Book)this.jComboBoxListaLivros.getSelectedItem());
+        ChangeViewController.addColorOnRows(jTableExemplarys);
     }//GEN-LAST:event_jComboBoxListaLivrosItemStateChanged
 
+    public JTable getjTableExemplarys() {
+        return jTableExemplarys;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRealizarEmprestimo;
     private javax.swing.JComboBox<Object> jComboBoxListaLivros;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableExemplares;
+    private javax.swing.JTable jTableExemplarys;
     // End of variables declaration//GEN-END:variables
 }

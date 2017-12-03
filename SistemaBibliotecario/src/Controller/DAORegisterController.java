@@ -8,22 +8,26 @@ package Controller;
 import Connection.DAOFactory;
 import Model.Bean.Book;
 import Model.Bean.Exemplary;
+import Model.Bean.Lending;
 import Model.Bean.Librarian;
 import Model.Bean.User;
 import Model.DAO.BookDAO;
 import Model.DAO.ExemplaryDAO;
+import Model.DAO.LendingDAO;
 import Model.DAO.LibrarianDAO;
 import Model.DAO.UserDAO;
+import View.ViewRegister.ViewDoLending;
 import View.ViewRegister.ViewRegisterBook;
 import View.ViewRegister.ViewRegisterExemplary;
 import View.ViewRegister.ViewRegisterLibrarian;
 import View.ViewRegister.ViewRegisterUser;
+import java.sql.Date;
 
 /**
  *
  * @author XXXXXX
  */
-public class DAOInsertController {
+public class DAORegisterController {
    
     
     public static boolean insertExemplarys(ViewRegisterExemplary viewRegisterExemplary){
@@ -46,6 +50,7 @@ public class DAOInsertController {
     }
     
     public static boolean insertUser(ViewRegisterUser viewRegisterUser){
+        
         String name = viewRegisterUser.getTxtNameUser().getText();
         String user = viewRegisterUser.getTxtUserUser().getText();
         String password = new String(viewRegisterUser.getTxtPasswordUser().getPassword());
@@ -56,6 +61,7 @@ public class DAOInsertController {
     }
     
     public static boolean insertBook(ViewRegisterBook viewRegisterBook){
+        
         String author = viewRegisterBook.getTxtAuthor().getText();
         String publishingCompany = viewRegisterBook.getTxtPublishingCompany().getText();
         String theme = viewRegisterBook.getTxtTheme().getText();
@@ -78,5 +84,26 @@ public class DAOInsertController {
         
         return libDAO.insert(lib);
     }
-   
+    
+    public static boolean insertLending(ViewDoLending viewDoLending){
+        int selectedRow = viewDoLending.getjTableExemplarys().getSelectedRow();
+        User user = LoginController.user;
+        Librarian librarian = LoginController.loggedLibrarian;
+        Exemplary exemplary;
+        Date lendingDate = new Date(System.currentTimeMillis());
+        
+        LendingDAO lendingDAO = DAOFactory.getInstanceLendingDAO();
+        ExemplaryDAO exemplaryDAO = DAOFactory.getInstanceExemplaryDAO();
+        exemplary = exemplaryDAO.findExemplary((int) viewDoLending.getjTableExemplarys().getValueAt(selectedRow, 0));
+        
+        Lending lending = new Lending();
+        lending.setStatus(true);
+        lending.setUser(user);
+        lending.setExemplary(exemplary);
+        lending.setLendingLibrarian(librarian);
+        lending.setLendingDate(lendingDate);
+        
+        return lendingDAO.registerLending(lending);
+        
+    }
 }

@@ -9,8 +9,10 @@ import Connection.DAOFactory;
 import Model.Bean.Exemplary;
 import Model.DAO.BookDAO;
 import Model.DAO.ExemplaryDAO;
+import Model.DAO.UserDAO;
 import View.ViewDelete.ViewDeleteBook;
 import View.ViewDelete.ViewDeleteExemplary;
+import View.ViewDelete.ViewDeleteUser;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
@@ -65,6 +67,21 @@ public class DAODeleteController {
         return numberBooksSelected==0;
     }
     
-    
+    public static boolean deleteUser(ViewDeleteUser viewDeleteUser){
+        int[] rowsSelected = viewDeleteUser.getjTableUsers().getSelectedRows();
+        int numberBooksSelected = rowsSelected.length;
+        
+        UserDAO userDAO = DAOFactory.getInstanceUserDAO();
+        List<Integer> idUsers = DAODeleteController.searchIdExemplarys(rowsSelected, viewDeleteUser.getjTableUsers());
+        
+        for(Integer id:idUsers){
+            if(userDAO.delete(id)){
+                numberBooksSelected--;
+            }
+            userDAO = DAOFactory.getInstanceUserDAO();
+        }
+        
+        return numberBooksSelected==0;
+    }
  
 }

@@ -7,7 +7,6 @@ package Model.DAO;
 
 import Connection.ConnectionFactory;
 import Model.Bean.Book;
-import Model.Bean.Exemplary;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -154,6 +153,28 @@ public class BookDAO {
              ConnectionFactory.closeConnection(con, stmt);
          }
          
+    }
+     
+    public boolean update(Book book){
+        String sql = "UPDATE book SET title = ?,author = ?,theme = ?,publishingCompany = ?,edition = ? where id = ?";
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, book.getTitle());
+            stmt.setString(2, book.getAuthor());
+            stmt.setString(3, book.getTheme());
+            stmt.setString(4, book.getPublishingCompany());
+            stmt.setInt(5, book.getEdition());
+            stmt.setInt(6, book.getId());
+            
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.err.println("Error on insert book:"+ex);
+            return false;
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt);
+        }
     }
     
     public void setConnection(Connection con){

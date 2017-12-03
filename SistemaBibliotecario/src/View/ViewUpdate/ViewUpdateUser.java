@@ -69,6 +69,11 @@ public class ViewUpdateUser extends javax.swing.JInternalFrame {
                 jTableUsersMouseClicked(evt);
             }
         });
+        jTableUsers.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTableUsersKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableUsers);
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -180,6 +185,15 @@ public class ViewUpdateUser extends javax.swing.JInternalFrame {
 
     private void btnUpdatePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_btnUpdatePropertyChange
     }//GEN-LAST:event_btnUpdatePropertyChange
+
+    private void jTableUsersKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableUsersKeyReleased
+        if(this.jTableUsers.getSelectedRow()!=-1){
+            this.txtName.setText(this.jTableUsers.getValueAt(this.jTableUsers.getSelectedRow(), 1).toString());
+            this.txtUser.setText(this.jTableUsers.getValueAt(this.jTableUsers.getSelectedRow(), 2).toString());
+            this.txtPassword.setText(this.jTableUsers.getValueAt(this.jTableUsers.getSelectedRow(), 3).toString());
+            this.btnUpdate.setVisible(true);
+        }
+    }//GEN-LAST:event_jTableUsersKeyReleased
     
     private boolean isUpdated(){
         String name = this.jTableUsers.getValueAt(this.jTableUsers.getSelectedRow(), 1).toString();

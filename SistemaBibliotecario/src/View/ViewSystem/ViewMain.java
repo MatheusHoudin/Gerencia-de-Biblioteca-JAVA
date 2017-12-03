@@ -18,6 +18,8 @@ import View.ViewRegister.ViewRegisterLibrarian;
 import View.ViewRegister.ViewRegisterUser;
 import View.ViewShow.ViewShowExemplarys;
 import View.ViewShow.ViewShowUsers;
+import View.ViewUpdate.ViewUpdateBook;
+import View.ViewUpdate.ViewUpdateUser;
 
 /**
  *
@@ -110,6 +112,11 @@ public class ViewMain extends javax.swing.JFrame {
 
         jMenuItemAlterUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/user_edit.png"))); // NOI18N
         jMenuItemAlterUser.setText("Alterar Usuário");
+        jMenuItemAlterUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAlterUserActionPerformed(evt);
+            }
+        });
         jMenuUsers.add(jMenuItemAlterUser);
 
         jMenuItemShowUsers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/group_go.png"))); // NOI18N
@@ -150,6 +157,11 @@ public class ViewMain extends javax.swing.JFrame {
         jMenuItemAlterBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_edit.png"))); // NOI18N
         jMenuItemAlterBook.setText("Alterar Livro");
         jMenuItemAlterBook.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuItemAlterBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAlterBookActionPerformed(evt);
+            }
+        });
         jMenuBooks.add(jMenuItemAlterBook);
 
         jMenuItemShowBooks.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_open.png"))); // NOI18N
@@ -354,6 +366,14 @@ public class ViewMain extends javax.swing.JFrame {
     private void jMenuItemDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDeleteUserActionPerformed
         ChangeViewController.changeView(jDesktopPane1, new ViewDeleteUser());
     }//GEN-LAST:event_jMenuItemDeleteUserActionPerformed
+
+    private void jMenuItemAlterUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAlterUserActionPerformed
+        ChangeViewController.changeView(jDesktopPane1, new ViewUpdateUser());
+    }//GEN-LAST:event_jMenuItemAlterUserActionPerformed
+
+    private void jMenuItemAlterBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAlterBookActionPerformed
+        ChangeViewController.changeView(jDesktopPane1, new ViewUpdateBook());
+    }//GEN-LAST:event_jMenuItemAlterBookActionPerformed
 
     /**
      * @param args the command line arguments

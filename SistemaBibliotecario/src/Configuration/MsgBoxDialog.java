@@ -25,8 +25,12 @@ public class MsgBoxDialog {
     }
     
     public static boolean showConfirmDialogOnDeleteBook(){
-        int confirmation = JOptionPane.showConfirmDialog(null, "Tem certeza de que quer excluir os livros e os exemplares relacionados:", "Excluir Livros e Exemplares", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        int confirmation = JOptionPane.showConfirmDialog(null, "Tem certeza de que quer excluir os livros e os exemplares relacionados?", "Excluir Livros e Exemplares", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
         return confirmation==JOptionPane.YES_OPTION;
     }
-   
+    
+    public static boolean showConfirmDialogOnDeleteUser(){
+        int confirmation = JOptionPane.showConfirmDialog(null, "Tem certeza de que deseja excluir os usuários selecionados?", "Excluir usuários",JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        return confirmation==JOptionPane.YES_OPTION;
+    }
 }

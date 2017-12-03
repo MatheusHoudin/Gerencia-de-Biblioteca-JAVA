@@ -149,11 +149,15 @@ public class ViewRegisterLibrarian extends javax.swing.JInternalFrame {
            this.txtUser.getText().equals("")){
             JOptionPane.showMessageDialog(rootPane, "Preencha todos os dados");
         }else{
-            if(DAORegisterController.insertLibrarian(this)){
-                this.resetFields();
-                JOptionPane.showMessageDialog(rootPane, "Bibliotecário cadastrado");
+            if(this.txtPassword.getPassword().length >= 8 && this.txtPassword.getPassword().length <= 16){
+                if(DAORegisterController.insertLibrarian(this)){
+                    this.resetFields();
+                    JOptionPane.showMessageDialog(rootPane, "Bibliotecário cadastrado");
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "Este nome de usuário já existe!");
+                }
             }else{
-                JOptionPane.showMessageDialog(rootPane, "Este nome de usuário já existe!");
+                JOptionPane.showMessageDialog(rootPane, "Digite uma senha com 8 à 16 caracteres!");
             }
         }
     }//GEN-LAST:event_btnInsertActionPerformed

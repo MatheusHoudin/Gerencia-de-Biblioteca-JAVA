@@ -5,6 +5,7 @@
  */
 package View.ViewDelete;
 
+import Configuration.MsgBoxDialog;
 import Controller.DAODeleteController;
 import Controller.DAOFindController;
 import javax.swing.JOptionPane;
@@ -44,11 +45,11 @@ public class ViewDeleteUser extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Id", "Nome", "Login"
+                "Id", "Nome", "Usuário", "Senha"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -93,12 +94,14 @@ public class ViewDeleteUser extends javax.swing.JInternalFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         if(this.jTableUsers.getSelectedRow()!=-1){
-            if(DAODeleteController.deleteUser(this)){
-                JOptionPane.showMessageDialog(rootPane, "Usuários excluídos com sucesso");
-            }else{
-                JOptionPane.showMessageDialog(rootPane, "Algum usuário não foi excluído");
+            if(MsgBoxDialog.showConfirmDialogOnDeleteUser()){
+                if (DAODeleteController.deleteUser(this)) {
+                    JOptionPane.showMessageDialog(rootPane, "Usuários excluídos com sucesso");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Algum usuário não foi excluído");
+                }
+                DAOFindController.fillJTableUsers(jTableUsers);
             }
-            DAOFindController.fillJTableUsers(jTableUsers);
         }else{
             JOptionPane.showMessageDialog(rootPane, "Selecione ao menos uma linha da tabela");
         }

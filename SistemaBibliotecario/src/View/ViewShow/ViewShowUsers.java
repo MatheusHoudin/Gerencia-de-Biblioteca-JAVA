@@ -45,11 +45,11 @@ public class ViewShowUsers extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Id", "Nome", "Login"
+                "Id", "Nome", "Usuário", "Senha"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -123,6 +123,7 @@ public class ViewShowUsers extends javax.swing.JInternalFrame {
 
     private void btnRemoveFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveFilterActionPerformed
         DAOFindController.fillJTableUsers(jTableUsers);
+        this.txtFilter.setText("");
     }//GEN-LAST:event_btnRemoveFilterActionPerformed
 
 

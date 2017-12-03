@@ -113,7 +113,33 @@ public class ExemplaryDAO {
         
         return exemplarys;
     }
-    
+    public Exemplary findExemplary(int id){
+        String sql = "SELECT * FROM exemplary where exemplary.id = ?";
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+         try {
+             stmt = con.prepareStatement(sql);
+             stmt.setInt(1, id);
+             rs = stmt.executeQuery();
+             
+             while(rs.next()){
+                 Exemplary ex = new Exemplary();
+                 ex.setId(rs.getInt("book"));
+                 ex.setIdExemplary(rs.getInt("id"));
+                 if(rs.getInt("avaliable")==1){
+                     ex.setAvaliable(true);
+                 }else{
+                     ex.setAvaliable(false);
+                 }
+                 return ex;
+             }
+         } catch (SQLException ex) {
+             System.err.println("Error on find exemplary "+ex);
+             return null;
+         }
+         return null;
+    }
     public List<Exemplary> find(String title){
         String sql = "SELECT * FROM exemplary JOIN book ON book.id = exemplary.book WHERE book.title LIKE ?";
         PreparedStatement stmt = null;
@@ -148,24 +174,26 @@ public class ExemplaryDAO {
     }
     
     public boolean delete(int idExemplary){
-        String sql = "DELETE FROM exemplary WHERE exemplary.id = ?";
+        String sql = "DELETE FROM exemplary WHERE exemplary.id = ? AND exemplary.avaliable != 1";
         PreparedStatement stmt = null;
         
          try {
              stmt = con.prepareStatement(sql);
              stmt.setInt(1, idExemplary);
-             stmt.executeUpdate();
-             return true;
+             if(stmt.executeUpdate()==1){
+                 return true;
+             }
          } catch (SQLException ex) {
              System.err.println("Error on delete exemplary:"+ex);
              return false;
          }finally{
              ConnectionFactory.closeConnection(con, stmt);
          }
+         return false;
     }
     
      public boolean deleteByBookId(int idBook){
-        String sql = "DELETE FROM exemplary WHERE exemplary.book = ?";
+        String sql = "DELETE FROM exemplary WHERE exemplary.book = ? AND exemplary.avaliable != 1";
         PreparedStatement stmt = null;
         
          try {

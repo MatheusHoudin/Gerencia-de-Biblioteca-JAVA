@@ -128,6 +128,7 @@ public class ViewShowExemplarys extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnFilterActionPerformed
 
     private void btnRemoveFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveFilterActionPerformed
+        this.txtFilter.setText("");
         DAOFindController.fillJTableExemplarys(jTableExemplarys);
         ChangeViewController.addColorOnRows(jTableExemplarys);
     }//GEN-LAST:event_btnRemoveFilterActionPerformed

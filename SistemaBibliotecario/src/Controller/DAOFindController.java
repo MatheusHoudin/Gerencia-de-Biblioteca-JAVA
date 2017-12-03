@@ -8,8 +8,10 @@ package Controller;
 import Connection.DAOFactory;
 import Model.Bean.Book;
 import Model.Bean.Exemplary;
+import Model.Bean.User;
 import Model.DAO.BookDAO;
 import Model.DAO.ExemplaryDAO;
+import Model.DAO.UserDAO;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -45,6 +47,35 @@ public class DAOFindController {
         }
     }
     
+    public static void fillJTableUsers(JTable jTableUsers,String login){
+        DefaultTableModel dtm = (DefaultTableModel) jTableUsers.getModel();
+        dtm.setNumRows(0);
+        UserDAO uDAO = DAOFactory.getInstanceUserDAO();
+        
+        for(User user:uDAO.find(login)){
+            dtm.addRow(new Object[]{
+                user.getId(),
+                user.getName(),
+                user.getUser()
+            });
+        }
+    }
+    
+    public static void fillJTableUsers(JTable jTableUsers){
+        DefaultTableModel dtm = (DefaultTableModel) jTableUsers.getModel();
+        dtm.setNumRows(0);
+        UserDAO uDAO = DAOFactory.getInstanceUserDAO();
+        
+        for(User user:uDAO.findAll()){
+            dtm.addRow(new Object[]{
+                user.getId(),
+                user.getName(),
+                user.getUser(),
+                user.getPassword()
+            });
+        }
+    }
+    
     public static void fillJTableBooks(JTable jTableBooks,String filter){
         DefaultTableModel dtm = (DefaultTableModel) jTableBooks.getModel();
         dtm.setNumRows(0);
@@ -52,6 +83,7 @@ public class DAOFindController {
         
         for(Book book:bDao.findAll(filter)){
             dtm.addRow(new Object[]{
+                book.getId(),
                 book.getTitle(),
                 book.getTheme(),
                 book.getAuthor(),

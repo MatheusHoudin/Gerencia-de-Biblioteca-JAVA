@@ -5,7 +5,6 @@
  */
 package Model.Bean;
 
-import Model.Bean.Librarian;
 import java.sql.Date;
 
 /**
@@ -21,7 +20,11 @@ public class Lending {
     private float penality;
     private Date lendingDate;
     private Date devolutionDate;
-
+    private boolean status;
+    
+    public Lending(){
+        super();
+    }
     public Lending(Exemplary exemplary, User user, Librarian lendingLibrarian, Librarian devolutionLibrarian, float penality, Date lendingDate, Date devolutionDate) {
         this.exemplary = exemplary;
         this.user = user;
@@ -30,8 +33,17 @@ public class Lending {
         this.penality = penality;
         this.lendingDate = lendingDate;
         this.devolutionDate = devolutionDate;
+        this.setStatus(true);
     }
-   
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+    
     public int getId() {
         return id;
     }
