@@ -5,6 +5,7 @@
  */
 package View.ViewDelete;
 
+import Controller.ChangeViewController;
 import Controller.DAODeleteController;
 import Controller.DAOFindController;
 import javax.swing.JOptionPane;
@@ -22,6 +23,7 @@ public class ViewDeleteExemplary extends javax.swing.JInternalFrame {
     public ViewDeleteExemplary() {
         initComponents();
         DAOFindController.fillJTableExemplarys(jTableExemplarys);
+        ChangeViewController.addColorOnRows(jTableExemplarys);
     }
 
     /**
