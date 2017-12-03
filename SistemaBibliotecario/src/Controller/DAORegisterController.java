@@ -96,14 +96,19 @@ public class DAORegisterController {
         ExemplaryDAO exemplaryDAO = DAOFactory.getInstanceExemplaryDAO();
         exemplary = exemplaryDAO.findExemplary((int) viewDoLending.getjTableExemplarys().getValueAt(selectedRow, 0));
         
-        Lending lending = new Lending();
-        lending.setStatus(true);
-        lending.setUser(user);
-        lending.setExemplary(exemplary);
-        lending.setLendingLibrarian(librarian);
-        lending.setLendingDate(lendingDate);
-        
-        return lendingDAO.registerLending(lending);
-        
+        if(exemplary.isAvaliable()){
+            exemplaryDAO = DAOFactory.getInstanceExemplaryDAO();
+            exemplaryDAO.updateAvailability(exemplary.getIdExemplary(), false);
+
+            Lending lending = new Lending();
+            lending.setStatus(true);
+            lending.setUser(user);
+            lending.setExemplary(exemplary);
+            lending.setLendingLibrarian(librarian);
+            lending.setLendingDate(lendingDate);
+
+            return lendingDAO.registerLending(lending);
+        }
+        return false;
     }
 }

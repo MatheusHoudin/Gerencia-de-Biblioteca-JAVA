@@ -208,6 +208,30 @@ public class ExemplaryDAO {
              ConnectionFactory.closeConnection(con, stmt);
          }
     }
+     
+    public boolean updateAvailability(int exemplaryId, boolean isAvaliable){
+        String sql = "UPDATE exemplary SET avaliable = ? WHERE id = ?";
+        PreparedStatement stmt = null;
+        
+         try {
+             stmt = con.prepareStatement(sql);
+             if(isAvaliable){
+                 stmt.setInt(1, 1);
+             }else{
+                 stmt.setInt(1, 0);
+             }
+             stmt.setInt(2, exemplaryId);
+             if(stmt.executeUpdate()==1){
+                 return true;
+             }
+         } catch (SQLException ex) {
+             System.err.println("Error on update exemplary "+ex);
+             return false;
+         }finally{
+             ConnectionFactory.closeConnection(con, stmt);
+         }
+         return false;
+    }
 
     public void setConnection(Connection con) {
         this.con = con;

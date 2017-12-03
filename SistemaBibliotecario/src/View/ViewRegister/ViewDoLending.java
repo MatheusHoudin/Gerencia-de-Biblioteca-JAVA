@@ -8,12 +8,10 @@ package View.ViewRegister;
 import Configuration.MsgBoxDialog;
 import Controller.ChangeViewController;
 import Controller.DAOFindController;
+import Controller.DAORegisterController;
 import Model.Bean.Book;
-import java.awt.Color;
-import java.awt.Component;
-import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -27,6 +25,7 @@ public class ViewDoLending extends javax.swing.JInternalFrame {
      */
     public ViewDoLending() {
         initComponents();
+        this.btnDoLending.setVisible(false);
         DAOFindController.fillJComboBoxBooks(jComboBoxListaLivros);
         DAOFindController.fillJTableExemplarys(jTableExemplarys, (Book)this.jComboBoxListaLivros.getSelectedItem());
         ChangeViewController.addColorOnRows(jTableExemplarys);
@@ -45,7 +44,7 @@ public class ViewDoLending extends javax.swing.JInternalFrame {
         jComboBoxListaLivros = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableExemplarys = new javax.swing.JTable();
-        btnRealizarEmprestimo = new javax.swing.JButton();
+        btnDoLending = new javax.swing.JButton();
 
         setClosable(true);
         setVisible(true);
@@ -97,12 +96,22 @@ public class ViewDoLending extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTableExemplarys.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableExemplarysMouseClicked(evt);
+            }
+        });
+        jTableExemplarys.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTableExemplarysKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableExemplarys);
 
-        btnRealizarEmprestimo.setText("Realizar empréstimo");
-        btnRealizarEmprestimo.addActionListener(new java.awt.event.ActionListener() {
+        btnDoLending.setText("Realizar empréstimo");
+        btnDoLending.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRealizarEmprestimoActionPerformed(evt);
+                btnDoLendingActionPerformed(evt);
             }
         });
 
@@ -119,7 +128,7 @@ public class ViewDoLending extends javax.swing.JInternalFrame {
                         .addComponent(jComboBoxListaLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(241, 241, 241)
-                        .addComponent(btnRealizarEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnDoLending, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 654, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -135,7 +144,7 @@ public class ViewDoLending extends javax.swing.JInternalFrame {
                 .addGap(29, 29, 29)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                .addComponent(btnRealizarEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnDoLending, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -150,20 +159,38 @@ public class ViewDoLending extends javax.swing.JInternalFrame {
         MsgBoxDialog.showMsgYesNo(this);
     }//GEN-LAST:event_formInternalFrameClosing
 
-    private void btnRealizarEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarEmprestimoActionPerformed
-     
-    }//GEN-LAST:event_btnRealizarEmprestimoActionPerformed
+    private void btnDoLendingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoLendingActionPerformed
+        if(this.jTableExemplarys.getSelectedRows().length==1){
+            if(DAORegisterController.insertLending(this)){
+                JOptionPane.showMessageDialog(rootPane, "Empréstimo realizado com sucesso");
+                DAOFindController.fillJTableExemplarys(jTableExemplarys, (Book)this.jComboBoxListaLivros.getSelectedItem());
+                ChangeViewController.addColorOnRows(jTableExemplarys);
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Este livro já está em um empréstimo");
+            }
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Somente um exemplar por livro pode ser alocado para um empréstimo");
+        }
+    }//GEN-LAST:event_btnDoLendingActionPerformed
 
     private void jComboBoxListaLivrosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxListaLivrosItemStateChanged
         DAOFindController.fillJTableExemplarys(jTableExemplarys, (Book)this.jComboBoxListaLivros.getSelectedItem());
         ChangeViewController.addColorOnRows(jTableExemplarys);
     }//GEN-LAST:event_jComboBoxListaLivrosItemStateChanged
 
+    private void jTableExemplarysKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableExemplarysKeyReleased
+        this.btnDoLending.setVisible(true);
+    }//GEN-LAST:event_jTableExemplarysKeyReleased
+
+    private void jTableExemplarysMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableExemplarysMouseClicked
+        this.btnDoLending.setVisible(true);
+    }//GEN-LAST:event_jTableExemplarysMouseClicked
+
     public JTable getjTableExemplarys() {
         return jTableExemplarys;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnRealizarEmprestimo;
+    private javax.swing.JButton btnDoLending;
     private javax.swing.JComboBox<Object> jComboBoxListaLivros;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

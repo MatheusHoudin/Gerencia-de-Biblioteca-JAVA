@@ -9,7 +9,9 @@ import Connection.ConnectionFactory;
 import Model.Bean.Lending;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,6 +21,10 @@ import java.util.logging.Logger;
  */
 public class LendingDAO {
     private Connection con = null;
+
+    public void setCon(Connection con) {
+        this.con = con;
+    }
     
     private LendingDAO(){
         this.con = ConnectionFactory.getConnection();
@@ -50,5 +56,29 @@ public class LendingDAO {
             ConnectionFactory.closeConnection(con, stmt);
         }
         return false;
+    }
+    
+    public List<Lending> findAll(){
+        String sql = "SELECT book.name, exemplary.id,librarian.name,user.name,lending.penality,"
+                + "lending.lendingDate,lending.devolutionDate,lending.status "
+                + "FROM ((((book JOIN exemplary ON book.id = exemplary.book) JOIN lending ON"
+                + "exemplary.id = lending.exemplary) JOIN user ON lending.user = user.id) JOIN librarian ON"
+                + "lending.lendingLibrarian = librarian.id AND lending.devolutionLibrarian = librarian.id)";
+        
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        try {
+            stmt = con.prepareStatement(sql);
+            rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(LendingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+               
     }
 }

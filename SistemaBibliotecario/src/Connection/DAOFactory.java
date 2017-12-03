@@ -27,6 +27,7 @@ public class DAOFactory {
         if(DAOFactory.lendingDAO==null){
             DAOFactory.lendingDAO = LendingDAO.getInstance();
         }
+        DAOFactory.lendingDAO.setCon(ConnectionFactory.getConnection());
         return DAOFactory.lendingDAO;
     }
     public static UserDAO getInstanceUserDAO(){
