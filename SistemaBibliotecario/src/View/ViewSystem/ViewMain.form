@@ -197,6 +197,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Visualizar Empr&#xe9;stimos"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemShowLendingsActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemRenovateLending">
               <Properties>

@@ -17,8 +17,10 @@ import View.ViewRegister.ViewRegisterBook;
 import View.ViewRegister.ViewRegisterLibrarian;
 import View.ViewRegister.ViewRegisterUser;
 import View.ViewShow.ViewShowExemplarys;
+import View.ViewShow.ViewShowLendings;
 import View.ViewShow.ViewShowUsers;
 import View.ViewUpdate.ViewUpdateBook;
+import View.ViewUpdate.ViewUpdateLending;
 import View.ViewUpdate.ViewUpdateUser;
 
 /**
@@ -227,6 +229,11 @@ public class ViewMain extends javax.swing.JFrame {
 
         jMenuItemShowLendings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_next.png"))); // NOI18N
         jMenuItemShowLendings.setText("Visualizar Empréstimos");
+        jMenuItemShowLendings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemShowLendingsActionPerformed(evt);
+            }
+        });
         jMenuLendings.add(jMenuItemShowLendings);
 
         jMenuItemRenovateLending.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book_error.png"))); // NOI18N
@@ -312,7 +319,7 @@ public class ViewMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jDesktopPane1MouseClicked
 
     private void jMenuItemRenovateLendingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRenovateLendingActionPerformed
-        // TODO add your handling code here:
+        ChangeViewController.changeView(jDesktopPane1, new ViewUpdateLending());
     }//GEN-LAST:event_jMenuItemRenovateLendingActionPerformed
 
     private void jMenuItemDoDevolutionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDoDevolutionActionPerformed
@@ -374,6 +381,10 @@ public class ViewMain extends javax.swing.JFrame {
     private void jMenuItemAlterBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAlterBookActionPerformed
         ChangeViewController.changeView(jDesktopPane1, new ViewUpdateBook());
     }//GEN-LAST:event_jMenuItemAlterBookActionPerformed
+
+    private void jMenuItemShowLendingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemShowLendingsActionPerformed
+        ChangeViewController.changeView(jDesktopPane1, new ViewShowLendings());
+    }//GEN-LAST:event_jMenuItemShowLendingsActionPerformed
 
     /**
      * @param args the command line arguments
