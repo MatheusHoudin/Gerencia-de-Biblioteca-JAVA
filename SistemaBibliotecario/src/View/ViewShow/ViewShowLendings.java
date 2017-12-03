@@ -6,6 +6,8 @@
 package View.ViewShow;
 
 import Connection.DAOFactory;
+import Controller.ChangeViewController;
+import Controller.DAOFindController;
 import Model.DAO.LendingDAO;
 
 /**
@@ -19,8 +21,8 @@ public class ViewShowLendings extends javax.swing.JInternalFrame {
      */
     public ViewShowLendings() {
         initComponents();
-        LendingDAO d = DAOFactory.getInstanceLendingDAO();
-        d.findAll();
+        DAOFindController.fillJTableLendings(jTableLendings);
+        ChangeViewController.addColorOnRowsOfLending(jTableLendings);
     }
 
     /**
@@ -35,16 +37,18 @@ public class ViewShowLendings extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableLendings = new javax.swing.JTable();
 
+        setClosable(true);
+
         jTableLendings.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Livro", "Id exemplar", "Bibliotecário empréstimo", "Bibliotecário devolução", "Usuário", "Data empréstimo", "Data devolução", "Multa", "Status"
+                "Livro", "Edição", "Id exemplar", "Bibliotecário empréstimo", "Bibliotecário devolução", "Usuário", "Data empréstimo", "Data devolução", "Multa", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -65,8 +69,8 @@ public class ViewShowLendings extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(126, 126, 126)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
