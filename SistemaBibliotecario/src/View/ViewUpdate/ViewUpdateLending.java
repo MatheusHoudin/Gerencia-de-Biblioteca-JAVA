@@ -3,23 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View.ViewShow;
+package View.ViewUpdate;
 
-import Connection.DAOFactory;
 import Controller.ChangeViewController;
 import Controller.DAOFindController;
-import Model.DAO.LendingDAO;
+import Controller.DAOUpdateController;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 /**
  *
  * @author XXXXXX
  */
-public class ViewShowLendings extends javax.swing.JInternalFrame {
+public class ViewUpdateLending extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form ViewShowLendings
+     * Creates new form ViewUpdateLending
      */
-    public ViewShowLendings() {
+    public ViewUpdateLending() {
         initComponents();
         DAOFindController.fillJTableLendings(jTableLendings);
         ChangeViewController.addColorOnRowsOfLending(jTableLendings);
@@ -36,6 +37,7 @@ public class ViewShowLendings extends javax.swing.JInternalFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableLendings = new javax.swing.JTable();
+        btnRenovateLending = new javax.swing.JButton();
 
         setClosable(true);
 
@@ -56,10 +58,13 @@ public class ViewShowLendings extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane1.setViewportView(jTableLendings);
-        if (jTableLendings.getColumnModel().getColumnCount() > 0) {
-            jTableLendings.getColumnModel().getColumn(0).setResizable(false);
-            jTableLendings.getColumnModel().getColumn(6).setResizable(false);
-        }
+
+        btnRenovateLending.setText("Renovar Empréstimo");
+        btnRenovateLending.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRenovateLendingActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -67,22 +72,47 @@ public class ViewShowLendings extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 990, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 928, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(378, 378, 378)
+                .addComponent(btnRenovateLending)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addComponent(btnRenovateLending, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+                .addGap(21, 21, 21))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnRenovateLendingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRenovateLendingActionPerformed
+        if(this.jTableLendings.getSelectedRow()!=-1){
+            if(DAOUpdateController.updateLending(this)){
+                
+                JOptionPane.showMessageDialog(rootPane, "Renovações feitas com sucesso");
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Alguma renovação não foi bem sucedida");
+            }
+            DAOFindController.fillJTableLendings(jTableLendings);
+            ChangeViewController.addColorOnRowsOfLending(jTableLendings);
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Selecione ao menos uma linha da tabela");
+        }
+    }//GEN-LAST:event_btnRenovateLendingActionPerformed
+
+    public JTable getjTableLendings() {
+        return jTableLendings;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRenovateLending;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableLendings;
     // End of variables declaration//GEN-END:variables

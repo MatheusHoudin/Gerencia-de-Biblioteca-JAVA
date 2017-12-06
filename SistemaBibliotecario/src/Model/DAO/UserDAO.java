@@ -103,6 +103,33 @@ public class UserDAO {
         return users;
     }
     
+    public User find(int id){
+        String sql = "SELECT * FROM user WHERE user.id = ?";
+        
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                User user = new User();
+                user.setId(rs.getInt("id"));
+                user.setName(rs.getString("name"));
+                user.setUser(rs.getString("user"));
+                return user;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        return null;  
+    }
+    
     public List<User> findAll(){
         String sql = "SELECT * FROM user";
         PreparedStatement stmt = null;

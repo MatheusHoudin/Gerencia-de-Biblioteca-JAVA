@@ -174,7 +174,7 @@ public class ExemplaryDAO {
     }
     
     public boolean delete(int idExemplary){
-        String sql = "DELETE FROM exemplary WHERE exemplary.id = ? AND exemplary.avaliable != 1";
+        String sql = "DELETE FROM exemplary WHERE exemplary.id = ? AND exemplary.avaliable != 0";
         PreparedStatement stmt = null;
         
          try {
@@ -193,12 +193,13 @@ public class ExemplaryDAO {
     }
     
      public boolean deleteByBookId(int idBook){
-        String sql = "DELETE FROM exemplary WHERE exemplary.book = ? AND exemplary.avaliable != 1";
+        String sql = "DELETE FROM exemplary WHERE exemplary.book = ? AND exemplary.avaliable = ?";
         PreparedStatement stmt = null;
         
          try {
              stmt = con.prepareStatement(sql);
              stmt.setInt(1, idBook);
+             stmt.setInt(2, 1);
              stmt.executeUpdate();
              return true;
          } catch (SQLException ex) {

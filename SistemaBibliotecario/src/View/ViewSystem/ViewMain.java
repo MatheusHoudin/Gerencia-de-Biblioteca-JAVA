@@ -10,6 +10,7 @@ import Controller.ChangeViewController;
 import View.ViewDelete.ViewDeleteBook;
 import View.ViewDelete.ViewDeleteExemplary;
 import View.ViewDelete.ViewDeleteUser;
+import View.ViewRegister.ViewDoDevolution;
 import View.ViewValidate.ViewValidateUser;
 import View.ViewShow.ViewShowBooks;
 import View.ViewRegister.ViewRegisterExemplary;
@@ -323,7 +324,7 @@ public class ViewMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemRenovateLendingActionPerformed
 
     private void jMenuItemDoDevolutionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDoDevolutionActionPerformed
-        // TODO add your handling code here:
+        ChangeViewController.changeView(jDesktopPane1, new ViewDoDevolution());
     }//GEN-LAST:event_jMenuItemDoDevolutionActionPerformed
 
     private void jMenuItemDoLendingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDoLendingActionPerformed

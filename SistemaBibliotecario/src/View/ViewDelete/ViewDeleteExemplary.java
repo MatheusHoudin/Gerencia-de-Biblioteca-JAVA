@@ -50,13 +50,14 @@ public class ViewDeleteExemplary extends javax.swing.JInternalFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        jTableExemplarys.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTableExemplarys);
 
         btnExcluir.setText("Excluir");

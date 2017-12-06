@@ -166,7 +166,7 @@ public class ViewDoLending extends javax.swing.JInternalFrame {
                 DAOFindController.fillJTableExemplarys(jTableExemplarys, (Book)this.jComboBoxListaLivros.getSelectedItem());
                 ChangeViewController.addColorOnRows(jTableExemplarys);
             }else{
-                JOptionPane.showMessageDialog(rootPane, "Este livro já está em um empréstimo");
+                JOptionPane.showMessageDialog(rootPane, "Este livro já está em um empréstimo ou o usuário já possui um exemplar deste livro");
             }
         }else{
             JOptionPane.showMessageDialog(rootPane, "Somente um exemplar por livro pode ser alocado para um empréstimo");

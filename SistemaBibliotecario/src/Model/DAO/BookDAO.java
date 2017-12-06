@@ -13,6 +13,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -80,6 +82,36 @@ public class BookDAO {
         return books;
     }
     
+    public Book find(int id){
+        String sql = "SELECT * FROM book WHERE book.id = ?";
+        
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                Book book = new Book();
+                book.setId(rs.getInt("id"));
+                book.setTitle(rs.getString("title"));
+                book.setAuthor(rs.getString("author"));
+                book.setEdition(rs.getInt("edition"));
+                book.setTheme(rs.getString("theme"));
+                book.setPublishingCompany(rs.getString("publishingCompany"));
+                
+                return book;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BookDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        return null;
+    }
     public List<Book> findAll(String title){
         String sql = "SELECT * FROM book as b WHERE b.title LIKE ?";
         

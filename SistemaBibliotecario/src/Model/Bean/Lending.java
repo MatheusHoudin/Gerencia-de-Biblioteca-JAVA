@@ -6,12 +6,16 @@
 package Model.Bean;
 
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.Period;
 
 /**
  *
  * @author XXXXXX
  */
 public class Lending {
+    public static final float PENALITY = (float) 0.35;
+    
     private int id;
     private Exemplary exemplary;
     private User user;
@@ -108,6 +112,25 @@ public class Lending {
         this.devolutionDate = devolutionDate;
     }
 
+    public boolean isValidToRenovate(){
+        LocalDate localDate = LocalDate.now();
+        Period period = Period.between(this.lendingDate.toLocalDate(), localDate);
+        
+        return !(period.getMonths()>=1 || !this.status);
+    }
     
-    
+    public void calculatePenality(){
+        LocalDate localDate = LocalDate.now();
+        Period period = Period.between(this.lendingDate.toLocalDate(), localDate);
+        int months = period.getMonths();
+        int days = period.getDays();
+        int years = period.getYears();
+        
+        if(months>=1 || years >=1){
+            months--;
+            this.penality += (days*Lending.PENALITY);
+            this.penality += ((months*30)*Lending.PENALITY);
+            this.penality += ((years*365)*Lending.PENALITY);
+        }
+    }
 }

@@ -39,6 +39,8 @@ public class ViewDoDevolution extends javax.swing.JInternalFrame {
         jTableLendings = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
+        setClosable(true);
+
         jTableLendings.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

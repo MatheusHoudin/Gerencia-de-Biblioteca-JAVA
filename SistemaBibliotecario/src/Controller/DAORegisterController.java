@@ -96,7 +96,8 @@ public class DAORegisterController {
         ExemplaryDAO exemplaryDAO = DAOFactory.getInstanceExemplaryDAO();
         exemplary = exemplaryDAO.findExemplary((int) viewDoLending.getjTableExemplarys().getValueAt(selectedRow, 0));
         
-        if(exemplary.isAvaliable()){
+        if(exemplary.isAvaliable() && lendingDAO.validateLending(user.getId(), exemplary.getId())){
+            lendingDAO = DAOFactory.getInstanceLendingDAO();
             exemplaryDAO = DAOFactory.getInstanceExemplaryDAO();
             exemplaryDAO.updateAvailability(exemplary.getIdExemplary(), false);
 
@@ -111,4 +112,6 @@ public class DAORegisterController {
         }
         return false;
     }
+    
+    
 }

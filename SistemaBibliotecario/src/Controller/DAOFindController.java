@@ -8,9 +8,11 @@ package Controller;
 import Connection.DAOFactory;
 import Model.Bean.Book;
 import Model.Bean.Exemplary;
+import Model.Bean.Lending;
 import Model.Bean.User;
 import Model.DAO.BookDAO;
 import Model.DAO.ExemplaryDAO;
+import Model.DAO.LendingDAO;
 import Model.DAO.UserDAO;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -134,6 +136,28 @@ public class DAOFindController {
                 exemplary.getTitle(),
                 exemplary.isAvaliable() ? "Disponível":"Indisponível",
                 exemplary.getId()
+            });
+        }
+    }
+    
+    public static void fillJTableLendings(JTable jTableLendings){
+        DefaultTableModel dtm = (DefaultTableModel) jTableLendings.getModel();
+        dtm.setNumRows(0);
+        LendingDAO lendingDAO = DAOFactory.getInstanceLendingDAO();
+        
+        for(Lending lending:lendingDAO.findAll()){
+            dtm.addRow(new Object[]{
+                lending.getId(),
+                lending.getExemplary().getTitle(),
+                lending.getExemplary().getEdition(),
+                lending.getExemplary().getIdExemplary(),
+                lending.getLendingLibrarian().getName(),
+                lending.getDevolutionLibrarian()!=null ? lending.getDevolutionLibrarian().getName():"",
+                lending.getUser().getName(),
+                lending.getLendingDate(),
+                lending.getDevolutionDate(),
+                lending.getPenality(),
+                lending.isStatus() ? "Em andamento":"Encerrado"
             });
         }
     }

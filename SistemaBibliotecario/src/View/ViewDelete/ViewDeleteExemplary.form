@@ -60,7 +60,7 @@
               <Table columnCount="4" rowCount="0">
                 <Column editable="false" title="Id" type="java.lang.Object"/>
                 <Column editable="false" title="T&#xed;tulo" type="java.lang.Object"/>
-                <Column editable="true" title="Disponibilidade" type="java.lang.Object"/>
+                <Column editable="false" title="Disponibilidade" type="java.lang.Object"/>
                 <Column editable="false" title="Id Livro" type="java.lang.Object"/>
               </Table>
             </Property>
@@ -89,7 +89,7 @@
               </TableColumnModel>
             </Property>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+              <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
             </Property>
           </Properties>
         </Component>

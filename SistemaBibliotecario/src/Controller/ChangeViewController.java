@@ -46,4 +46,22 @@ public class ChangeViewController {
             
         });
     }
+    
+    public static void addColorOnRowsOfLending(JTable jTableLendings){
+        jTableLendings.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                JLabel jlabel = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                
+                String obj = (String) table.getValueAt(row, 10);
+                
+                if(obj!=null && obj.equals("Em andamento")){
+                    jlabel.setForeground(Color.blue);
+                }else{
+                    jlabel.setForeground(Color.red);
+                }
+                return jlabel;
+            }
+        });
+    }
 }
