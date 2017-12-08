@@ -171,7 +171,7 @@ public class ViewUpdateUser extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtPasswordActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        if(this.isUpdated()){
+        if(this.isUpdated() && !this.isEmpty()){
             if(DAOUpdateController.updateUser(this)){
                 JOptionPane.showMessageDialog(rootPane, "Dados alterados com sucesso");
                 DAOFindController.fillJTableUsers(jTableUsers);
@@ -179,10 +179,12 @@ public class ViewUpdateUser extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(rootPane, "Erro ao alterar dados");
             }
         }else{
-            JOptionPane.showMessageDialog(rootPane, "Dados inalterados");
+            JOptionPane.showMessageDialog(rootPane, "Dados inválidos");
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
-
+    private boolean isEmpty(){
+        return this.txtName.getText().equals("") || this.txtPassword.getText().equals("") || this.txtUser.getText().endsWith("");
+    }
     private void btnUpdatePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_btnUpdatePropertyChange
     }//GEN-LAST:event_btnUpdatePropertyChange
 

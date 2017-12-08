@@ -203,7 +203,7 @@ public class ViewUpdateBook extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTableBooksKeyReleased
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        if(this.isUpdated()){
+        if(this.isUpdated() && !this.isEmpty()){
             if(DAOUpdateController.updateBook(this)){
                 JOptionPane.showMessageDialog(rootPane, "Dados alterados com sucesso");
                 DAOFindController.fillJTableBooks(jTableBooks);
@@ -211,7 +211,7 @@ public class ViewUpdateBook extends javax.swing.JInternalFrame {
                  JOptionPane.showMessageDialog(rootPane, "Erro ao alterar dados");
             }
         }else{
-            JOptionPane.showMessageDialog(rootPane, "Dados inalterados");
+            JOptionPane.showMessageDialog(rootPane, "Dados inválidos");
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
     
@@ -224,6 +224,11 @@ public class ViewUpdateBook extends javax.swing.JInternalFrame {
         
         return !this.txtTitle.getText().equals(titlee) || !this.txtTheme.getText().equals(theme) || !this.txtAuthor.getText().equals(author)
                 || !this.txtPublishingCompany.getText().equals(pubCom) || !this.jSpinnerEdition.getValue().equals(edition);
+    }
+    
+    private boolean isEmpty(){
+        return this.txtTitle.getText().equals("") || this.txtTheme.getText().equals("") || this.txtAuthor.getText().equals("")
+                || this.txtPublishingCompany.getText().equals("") || this.jSpinnerEdition.getValue().equals("");
     }
 
     public JTable getjTableBooks() {
