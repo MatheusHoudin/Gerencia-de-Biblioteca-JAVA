@@ -125,9 +125,6 @@ public class Lending {
         int months = period.getMonths();
         int days = period.getDays();
         int years = period.getYears();
-        System.out.println("month"+months);
-        System.out.println("day"+days);
-        System.out.println("year"+years);
         if(months>=1 || years >=1){
             months--;
             this.penality += (days*Lending.PENALITY);

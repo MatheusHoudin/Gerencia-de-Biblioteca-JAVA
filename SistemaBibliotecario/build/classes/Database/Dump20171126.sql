@@ -86,6 +86,7 @@ CREATE TABLE `lending` (
   `user` int(11) DEFAULT NULL,
   `lendingLibrarian` int(11) DEFAULT NULL,
   `devolutionLibrarian` int(11) DEFAULT NULL,
+    `status` TINYINT(1),
   PRIMARY KEY (`id`),
   KEY `exemplary` (`exemplary`),
   KEY `user` (`user`),
